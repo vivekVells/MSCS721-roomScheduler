@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Class to schedule a room
+ * RoomScheduler			Main driver program to coordinate and make the room scheduling action complete.
+ * 
  */
 public class RoomScheduler {
 	protected static Scanner keyboard = new Scanner(System.in);
@@ -61,10 +62,7 @@ public class RoomScheduler {
 		System.out.println("********************************************************************************************************************************************************");
 		System.out.println("\t\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
 		System.out.println("********************************************************************************************************************************************************");
-		System.out.println("Today: " + utility.Utility.getCurrentDateTime());
-		
-		
-		
+		System.out.println("Today: " + utility.Utility.getCurrentDateTime());		
 		System.out.println();
 	}
 
@@ -313,6 +311,16 @@ public class RoomScheduler {
 		}
 	}
 	
+	/**
+	 * isSameRoomAndTimeBooked			Finds whether a room is booked with same date and timings
+	 * 
+	 * @param roomList
+	 * @param name
+	 * @param startDate
+	 * @param startTime
+	 * @param endTime
+	 * @return		returns true if a room with same date and timing booked against the given start and end time arg
+	 */
 	protected static boolean isSameRoomAndTimeBooked(ArrayList<Room> roomList, String name, String startDate, String startTime, String endTime) {
 		boolean status = false;
 		

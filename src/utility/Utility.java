@@ -1,3 +1,6 @@
+/**
+ * utility			package holds all the frequently used and awesome things for the program to function well. Its like Batman's utility belt.
+ */
 package utility;
 
 import java.io.IOException;
@@ -118,7 +121,7 @@ public class Utility {
 	}
 	
 	/**
-	 * getDateDiffInDays			Used to get date difference between two dates in days
+	 * getDateDiffInDays			Used to get date difference between two dates in days; params should be in "YYYY:mm:dd" format
 	 * 
 	 * @param date1
 	 * @param date2
@@ -130,12 +133,27 @@ public class Utility {
 		return ChronoUnit.DAYS.between(a, b);
 	}
 	
+	/**
+	 * getTimeDiffInMinutes			Finds the given time arg diff in minutes unit; params should be in "HH:mm:ss" format
+	 * 
+	 * @param time1
+	 * @param time2
+	 * @return		returns (long integer) time duration difference in minutes for any given 2 time args 
+	 */
 	public static long getTimeDiffInMinutes(String time1, String time2) {
 	  // long timeDiff = LocalTime.parse(startTime).until(LocalTime.parse(endTime), MINUTES);
 		// long timeDiff = MINUTES.between(LocalTime.parse(startTime), LocalTime.parse(endTime));
 		return Duration.between(LocalTime.parse(time1), LocalTime.parse(time2)).toMinutes();
 	}
 
+	/**
+	 * isTargetBetweenStartAndStop			Finds whether the received single time is between other two time args; params should be in "HH:mm:ss" format
+	 * 
+	 * @param targetTime
+	 * @param startTime
+	 * @param stopTime
+	 * @return		returns true if first time arg is between other two time args; else false
+	 */
 	public static boolean isTargetBetweenStartAndStop(String targetTime, String startTime, String stopTime) {
 		if (LocalTime.parse(targetTime).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime).isBefore(LocalTime.parse(stopTime))) {
 			return true;
@@ -144,6 +162,15 @@ public class Utility {
 		}
 	}
 	
+	/**
+	 * isTargetBetweenStartAndStopExtend			Finds whether the received two time arg is between other two time args; params should be in "HH:mm:ss" format
+	 * 
+	 * @param targetTime1
+	 * @param targetTime2
+	 * @param startTime
+	 * @param stopTime
+	 * @return		returns true if first two time arg is between other two time args; else false
+	 */
 	public static boolean isTargetBetweenStartAndStopExtend(String targetTime1, String targetTime2, String startTime, String stopTime) {
 		if (LocalTime.parse(targetTime1).isBefore(LocalTime.parse(startTime)) && LocalTime.parse(targetTime1).isBefore(LocalTime.parse(stopTime)) 
 				&& LocalTime.parse(targetTime2).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime2).isAfter(LocalTime.parse(stopTime))) {

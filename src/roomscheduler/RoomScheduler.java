@@ -3,18 +3,16 @@
  * @version 1.8
  */
 
-
-
 /**
  * To contain all room schedule activities 
  */
 package roomscheduler;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import java.time.Duration;
 
 /**
  * Class to schedule a room
@@ -66,27 +64,7 @@ public class RoomScheduler {
 		System.out.println("********************************************************************************************************************************************************");
 		System.out.println("\t\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
 		System.out.println("********************************************************************************************************************************************************");
-		  
 		System.out.println("Today: " + utility.Utility.getCurrentDateTime());
-		String date = "2018-12-31";
-		// int c = Integer.valueOf(date.split("-")[0]);
-		// LocalDate a = LocalDate.of(Integer.valueOf(date.split("-")[0]), Integer.valueOf(date.split("-")[1]), Integer.valueOf(date.split("-")[2]));
-		LocalTime now = LocalTime.now();
-		System.out.println("currentdate and currenttime " + utility.Utility.getCurrentDate() + " \t " + utility.Utility.getCurrentTime());
-		System.out.println("Now: " + now);
-		//System.out.println(a.isAfter(now));
-		String time = "12:23:00";
-		try {
-			LocalDate.parse(date);
-			System.out.println();
-		} catch (DateTimeParseException e) {
-			System.out.println("Invalid date");
-		}
-		try {
-			LocalTime.parse(time);
-		} catch (DateTimeParseException e) {
-			System.out.println("Invalid time");
-		}
 		System.out.println();
 	}
 
@@ -144,7 +122,7 @@ public class RoomScheduler {
 				// Q: why should not this capacity condition be handled in Room.java file since it holds all info related to room. 
 				// RoomScheduler.java file here only helps to schedule. Hmmmmmmmmmmm.....				
 				if (capacity <=0 || capacity >10) {
-					System.out.println("Maximum allowable room capacity is 10");
+					System.out.println("Maximum allowable room capacity is 10...");
 				} else {
 					newRoom = new Room(name, capacity);
 					roomList.add(newRoom);
@@ -220,15 +198,19 @@ public class RoomScheduler {
 		} else {
 				System.out.println(roomList.size() + " Room(s) available\n");
 				for (int i=0; i<roomList.size(); i++) {
-					System.out.println(i + ") " + roomList.get(i).getName() + " || Capacity: " + roomList.get(i).getCapacity());
+					System.out.println(i+1 + ") " + roomList.get(i).getName() + " || Capacity: " + roomList.get(i).getCapacity());
 				}
 		}
 		
-		System.out.println("Redirecting to Home Page Menu...");
+		System.out.println("\nRedirecting to Home Page Menu...");
 		utility.Utility.sleepFor(3000);
 	}
 
-	
+	/**
+	 * getRoomName			Since used often to get room name, a function is used
+	 * 
+	 * @return		returns inputted keyboard
+	 */
 	protected static String getRoomName() {
 		// Q: nextLine() issue. unable to read the whole entry. some stuff happening... keyboard.next() before keyboard.nextLine() giving different results.
 		return keyboard.next();
@@ -263,7 +245,77 @@ public class RoomScheduler {
 		System.out.println("\nRedirecting to Home Page Menu...");
 		utility.Utility.sleepFor(3000);
 	}
-
+	
+	/**
+	 * isCurrentDateBefore			Compare two dates and check whether one date is before another			
+	 * 
+	 * @param startDate
+	 * @param currentDate
+	 * @return		returns true if given startDate arg is before currentDate arg
+	 */
+	protected static boolean isStartDateBeforeCurrentDate(String startDate, String currentDate) {
+		if (utility.Utility.isDateBefore(startDate, currentDate)) {
+			System.out.println("\nStart Date is before current date...");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * isStartDate30DaysAfterCurrentDate			Checks whether the start date is 30 days ahead of current date
+	 * 
+	 * @param startDate
+	 * @param currentDate
+	 * @return		returns true if start date is 30 days ahead of current date; else false
+	 */
+	protected static boolean isStartDate30DaysAfterCurrentDate(String startDate, String currentDate) {
+		long dateDiffInDays = utility.Utility.getDateDiffInDays(currentDate, startDate); 
+		System.out.println("dateOfDi: " + dateDiffInDays);
+		if ( dateDiffInDays > 30) {
+			System.out.println("Start Date is 30 days ahead of current date...\n30 days are the maximum allowed duration between start date and current date");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * isMinutesRounded15Increments			Verifies the minute part of time to be either in 00 or 15 or 30 or 45
+	 * 
+	 * @param time
+	 * @return		returns true if minute in time arg is off 15 increments or 00; else false
+	 */
+	protected static boolean isMinutesRounded15Increments(String time) {
+		String minuteStamp = time.split(":")[1];
+		if (minuteStamp.equals("00") || minuteStamp.equals("15") || minuteStamp.equals("30") || minuteStamp.equals("45")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * isMinutesDurationNotExceed60			Verifies that the time duration difference not exceed 1 hour and within 15 steps increments
+	 * 
+	 * @param startTime
+	 * @param endTime
+	 * @return		true if start and end time duration does not exceed 1 hour and within 15 steps increments
+	 */
+	protected static boolean isMinutesDurationNotExceed60(String startTime, String endTime) {
+		//long timeDiff = LocalTime.parse(startTime).until(LocalTime.parse(endTime), MINUTES);
+		//long timeDiff = MINUTES.between(LocalTime.parse(startTime), LocalTime.parse(endTime));
+		
+		long timeDiff = Duration.between(LocalTime.parse(startTime), LocalTime.parse(endTime)).toMinutes();
+		System.out.println("TimeDiff: " + timeDiff);
+		if (timeDiff == 15 || timeDiff == 30 || timeDiff == 45 || timeDiff == 60) {
+			return true;
+		} else {
+			System.out.println("The start time and end time duration difference exceeds 1 hour...\nMaximum allowed duration per meeting is 1 hour...");
+			return false;
+		}
+	}
+	
 	/**
 	 * scheduleRoom			schedule the room
 	 * 
@@ -279,7 +331,7 @@ public class RoomScheduler {
 		System.out.println("Note:"
 				+ "\nRefer Today's date time stamp at top left corner and schedule accordingly."
 				+ "\nInput of Date should be in \"YYYY-mm-dd\" - (e-g): 2018-02-28 "
-				+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 "
+				+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 and is in 24 hours format"
 				+ "\nStart Date should not be before current date and should not be more than 30 days from now"
 				+ "\nStart and End Time should have minutes such that minutes are of round figures like HH:00 or HH:15 or HH:30 or HH:45"
 				+ "\nStart and End Time difference should be minimum of 15 minutes and maximum of 60 minutes\n");
@@ -293,10 +345,6 @@ public class RoomScheduler {
 				if (!isRoomExists(roomList, name)) {
 					System.out.println("Inputted Room either not exists or removed...");
 				} else {					
-						/*
-						System.out.println("End Date? (yyyy-mm-dd):");
-						String endDate = keyboard.next();
-						*/
 	
 						// Q: start date and end date. Hmmm.... should this be handled like timing same for different dates. book? 
 						// 	let me remove end date for now.. will handle this concurrency soon
@@ -310,35 +358,37 @@ public class RoomScheduler {
 						// so, its like if (isValidDate() && checkCurrentDateBefore() && checkBefore30DaysFromNow())
 						// now, say checkCurrentDateBefore() returns true if positive; else prints the message "Start date before current date along with false return
 						// alright... let this be for now...
-						if (utility.Utility.isValidDate(startDate)) {
+						if (utility.Utility.isValidDate(startDate) 
+								&& !isStartDateBeforeCurrentDate(startDate, utility.Utility.getCurrentDate()) 
+								&& !isStartDate30DaysAfterCurrentDate(startDate, utility.Utility.getCurrentDate())) {
 							
-							if (utility.Utility.isDateBefore(startDate, utility.Utility.getCurrentDate())) {
-								System.out.println("\nStart Date is before current date... Kindly input correctly...");
-							} else {
-									System.out.print("Start Time (HH:MM): ");
-									String startTime = keyboard.next();
-									startTime = startTime + ":00";
-									
-									if (utility.Utility.isValidTime(startTime)) {
-										System.out.print("End Time (HH:MM): ");
-										String endTime = keyboard.next();
-										endTime = endTime + ":00";
+							System.out.print("Start Time (HH:MM): ");
+							String startTime = keyboard.next();
+							startTime = startTime + ":00";
+							
+							if (utility.Utility.isValidTime(startTime) && isMinutesRounded15Increments(startTime)) {
+								System.out.print("End Time (HH:MM): ");
+								String endTime = keyboard.next();
+								endTime = endTime + ":00";
+								
+								if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
+									if (isMinutesDurationNotExceed60(startTime, endTime)) {
+										System.out.print("Subject: ");
+										String subject = keyboard.next();
 										
-										if (utility.Utility.isValidTime(endTime)) {
-											System.out.print("Subject: ");
-											String subject = keyboard.next();
-											
-											Room curRoom = getRoomFromName(roomList, name);					
-											Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
-											curRoom.addMeeting(meeting);
-											
-											System.out.println("Successfully scheduled meeting!");
-										} else {
-											System.out.println("Invalid end time inputed...");
-										}
+										Room curRoom = getRoomFromName(roomList, name);					
+										Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
+										curRoom.addMeeting(meeting);
+										
+										System.out.println("Successfully scheduled meeting!");
 									} else {
-										System.out.println("Invalid start time inputed...");
+											System.out.println("Invalid start and end time duration inputed...");
 									}
+								} else {
+									System.out.println("Invalid end time inputed...");
+								}
+							} else {
+								System.out.println("Invalid start time inputed...");
 							}
 						} else {
 							System.out.println("Invalid start date inputed...");
@@ -365,14 +415,14 @@ public class RoomScheduler {
 			System.out.println("No rooms available which are to be scheduled...");
 		} else {
 			System.out.print("Room Name: ");
-			String roomName = getRoomName();
-			System.out.println("\n" + roomName + "'s Schedule: \n");
-			
+			String roomName = getRoomName();			
 			if (isRoomExists(roomList, roomName)) {
 				if (getRoomFromName(roomList, roomName).getMeetings().size() == 0) {
 					System.out.println("No Meetings being scheduled for this room");
 				} else {
 					int i = 0;
+					System.out.println("\n" + roomName + "'s Schedule: \n");
+
 					for (Meeting m : getRoomFromName(roomList, roomName).getMeetings()) {
 						System.out.println( i + 1 + ") " + m.toString());
 						++i;

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 public class Utility {
 	/**
@@ -113,6 +114,19 @@ public class Utility {
 		LocalDate a = LocalDate.of(Integer.valueOf(date1.split("-")[0]), Integer.valueOf(date1.split("-")[1]), Integer.valueOf(date1.split("-")[2]));
 		LocalDate b = LocalDate.of(Integer.valueOf(date2.split("-")[0]), Integer.valueOf(date2.split("-")[1]), Integer.valueOf(date2.split("-")[2]));
 		return a.isBefore(b);
+	}
+	
+	/**
+	 * getDateDiffInDays			Used to get date difference between two dates in days
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return		returns date difference between two dates in days 
+	 */
+	public static long getDateDiffInDays(String date1, String date2) {
+		LocalDate a = LocalDate.of(Integer.valueOf(date1.split("-")[0]), Integer.valueOf(date1.split("-")[1]), Integer.valueOf(date1.split("-")[2]));
+		LocalDate b = LocalDate.of(Integer.valueOf(date2.split("-")[0]), Integer.valueOf(date2.split("-")[1]), Integer.valueOf(date2.split("-")[2]));
+		return ChronoUnit.DAYS.between(a, b);
 	}
 	
 }

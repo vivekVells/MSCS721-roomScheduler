@@ -11,9 +11,7 @@
 package roomscheduler;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,32 +57,28 @@ public class RoomScheduler {
 					utility.Utility.sleepFor(2000);
 			}
 		}
-	}
-	
-	/**
-	 * getCurrentDateTime			To provide current date and time. This is based on current locale machine time...
-	 * @return
-	 */
-	protected static String getCurrentDateTime() {
-		LocalDateTime ldt = LocalDateTime.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:MM:ss");
-		return dtf.format(ldt);
-	}
-	
+	}	
 	
 	/**
 	 * roomSchedulerBanner			Just a banner page. Title and stuffs.
 	 */
 	public static void roomSchedulerBanner() {
 		System.out.println("********************************************************************************************************************************************************");
-		System.out.println("\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
+		System.out.println("\t\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
 		System.out.println("********************************************************************************************************************************************************");
 		  
-		System.out.println("Today: " + getCurrentDateTime());
+		System.out.println("Today: " + utility.Utility.getCurrentDateTime());
 		String date = "2018-12-31";
+		// int c = Integer.valueOf(date.split("-")[0]);
+		// LocalDate a = LocalDate.of(Integer.valueOf(date.split("-")[0]), Integer.valueOf(date.split("-")[1]), Integer.valueOf(date.split("-")[2]));
+		LocalTime now = LocalTime.now();
+		System.out.println("currentdate and currenttime " + utility.Utility.getCurrentDate() + " \t " + utility.Utility.getCurrentTime());
+		System.out.println("Now: " + now);
+		//System.out.println(a.isAfter(now));
 		String time = "12:23:00";
 		try {
 			LocalDate.parse(date);
+			System.out.println();
 		} catch (DateTimeParseException e) {
 			System.out.println("Invalid date");
 		}
@@ -286,6 +280,7 @@ public class RoomScheduler {
 				+ "\nRefer Today's date time stamp at top left corner and schedule accordingly."
 				+ "\nInput of Date should be in \"YYYY-mm-dd\" - (e-g): 2018-02-28 "
 				+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 "
+				+ "\nStart Date should not be before current date and should not be more than 30 days from now"
 				+ "\nStart and End Time should have minutes such that minutes are of round figures like HH:00 or HH:15 or HH:30 or HH:45"
 				+ "\nStart and End Time difference should be minimum of 15 minutes and maximum of 60 minutes\n");
 		
@@ -311,30 +306,39 @@ public class RoomScheduler {
 						System.out.print("Start Date (yyyy-mm-dd): ");
 						String startDate = keyboard.next();
 						
+						// I have an idea here. combining all the if conditions together.. hmmm....
+						// so, its like if (isValidDate() && checkCurrentDateBefore() && checkBefore30DaysFromNow())
+						// now, say checkCurrentDateBefore() returns true if positive; else prints the message "Start date before current date along with false return
+						// alright... let this be for now...
 						if (utility.Utility.isValidDate(startDate)) {
-							System.out.print("Start Time (HH:MM): ");
-							String startTime = keyboard.next();
-							startTime = startTime + ":00";
 							
-							if (utility.Utility.isValidTime(startTime)) {
-								System.out.print("End Time (HH:MM): ");
-								String endTime = keyboard.next();
-								endTime = endTime + ":00";
-								
-								if (utility.Utility.isValidTime(endTime)) {
-									System.out.print("Subject: ");
-									String subject = keyboard.next();
-									
-									Room curRoom = getRoomFromName(roomList, name);					
-									Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
-									curRoom.addMeeting(meeting);
-									
-									System.out.println("Successfully scheduled meeting!");
-								} else {
-									System.out.println("Invalid end time inputed...");
-								}
+							if (utility.Utility.isDateBefore(startDate, utility.Utility.getCurrentDate())) {
+								System.out.println("\nStart Date is before current date... Kindly input correctly...");
 							} else {
-								System.out.println("Invalid start time inputed...");
+									System.out.print("Start Time (HH:MM): ");
+									String startTime = keyboard.next();
+									startTime = startTime + ":00";
+									
+									if (utility.Utility.isValidTime(startTime)) {
+										System.out.print("End Time (HH:MM): ");
+										String endTime = keyboard.next();
+										endTime = endTime + ":00";
+										
+										if (utility.Utility.isValidTime(endTime)) {
+											System.out.print("Subject: ");
+											String subject = keyboard.next();
+											
+											Room curRoom = getRoomFromName(roomList, name);					
+											Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
+											curRoom.addMeeting(meeting);
+											
+											System.out.println("Successfully scheduled meeting!");
+										} else {
+											System.out.println("Invalid end time inputed...");
+										}
+									} else {
+										System.out.println("Invalid start time inputed...");
+									}
 							}
 						} else {
 							System.out.println("Invalid start date inputed...");

@@ -2,7 +2,9 @@ package utility;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Utility {
@@ -35,6 +37,40 @@ public class Utility {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * getCurrentTime			To provide current time. This is based on current locale machine time...
+	 * 
+	 * @return returns string of current time in a pattern "HH:mm:ss"
+	 */
+	public static String getCurrentTime() {
+		// have to use pattern logic here. 
+		LocalTime lt = LocalTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+		return dtf.format(lt);
+	}
+	
+	/**
+	 * getCurrentDate			To provide current date. This is based on current locale machine time...
+	 * 
+	 * @return		returns string of current date in a pattern "yyyy-MM-dd"
+	 */
+	public static String getCurrentDate() {
+		// have to use pattern logic here. 
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		return dtf.format(ldt);
+	}
+	
+	/**
+	 * getCurrentDateTime			To provide current date and time. This is based on current locale machine time...
+	 * @return
+	 */
+	public static String getCurrentDateTime() {
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:MM:ss");
+		return dtf.format(ldt);
+	}
 	
 	/**
 	 * validateDate			Validation of date over the inputed date
@@ -65,4 +101,18 @@ public class Utility {
 			return false;
 		}
 	}
+	
+	/**
+	 * isDateBefore			Checks whether arg date 1 is before arg date 2
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return		returns true if arg date1 is before arg date 2
+	 */
+	public static boolean isDateBefore(String date1, String date2) {
+		LocalDate a = LocalDate.of(Integer.valueOf(date1.split("-")[0]), Integer.valueOf(date1.split("-")[1]), Integer.valueOf(date1.split("-")[2]));
+		LocalDate b = LocalDate.of(Integer.valueOf(date2.split("-")[0]), Integer.valueOf(date2.split("-")[1]), Integer.valueOf(date2.split("-")[2]));
+		return a.isBefore(b);
+	}
+	
 }

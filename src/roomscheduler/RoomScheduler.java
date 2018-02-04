@@ -317,9 +317,9 @@ public class RoomScheduler {
 		boolean status = false;
 		
 		Room currentRoom = getRoomFromName(roomList, name);
-		
 		for (Meeting m : currentRoom.getMeetings()) {
-			if (m.getStartTime().equals(startTime) && m.getStopTime().equals(endTime) 
+			if (m.getStartTime().equals(startTime) 
+					|| m.getStopTime().equals(endTime) 
 					|| utility.Utility.isTargetBetweenStartAndStop(startTime, m.getStartTime(), m.getStopTime())
 					|| utility.Utility.isTargetBetweenStartAndStop(endTime, m.getStartTime(), m.getStopTime()) 
 					|| utility.Utility.isTargetBetweenStartAndStopExtend(startTime, endTime, m.getStartTime(), m.getStopTime())) {

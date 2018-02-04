@@ -1,6 +1,9 @@
 package utility;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 public class Utility {
 	/**
@@ -30,6 +33,36 @@ public class Utility {
 			Thread.sleep(seconds);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * validateDate			Validation of date over the inputed date
+	 * 
+	 * @param date
+	 * @return		returns true if the received string arg is valid date; else false
+	 */
+	public static boolean isValidDate(String date) {
+		try {
+			LocalDate.parse(date);
+			return true;
+		} catch (DateTimeParseException e) {
+			return false;
+		}
+	}
+
+	/**
+	 * validateTime			Validation of time over the inputed time
+	 * 
+	 * @param time
+	 * @return		returns true if the received string arg is valid time; else false
+	 */
+	public static boolean isValidTime(String time) {
+		try {
+			LocalTime.parse(time);
+			return true;
+		} catch (DateTimeParseException e) {
+			return false;
 		}
 	}
 }

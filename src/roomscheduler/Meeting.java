@@ -8,43 +8,51 @@
  */
 package roomscheduler;
 
-import java.sql.Timestamp;
-
 public class Meeting {
 	
-	private Timestamp startTime = null;
-	private Timestamp stopTime = null;
+	private String startDate = null;
+	private String startTime = null;
+	private String stopTime = null;
 	private String subject = null;
 
 	
-	public Meeting(Timestamp newStartTime, Timestamp newEndTime, String newSubject) {
+	public Meeting(String newStartDate, String newStartTime, String newEndTime, String newSubject) {
+		setStartDate(newStartDate);
 		setStartTime(newStartTime);
 		setStopTime(newEndTime);
+		
 		if (newSubject.isEmpty()) {
 			setSubject("N/A");
-		}
-		else {
+		}	else {
 			setSubject(newSubject);
 		}
 	}
 
 	public String toString() {
-		return this.getStartTime().toString() + " - " + this.getStopTime() + ": " + getSubject();
+		return getStartDate() + " | " + getSubject() + ": " + this.getStartTime().toString() + " - " + this.getStopTime();
 	}
 	
-	public Timestamp getStartTime() {
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Timestamp getStopTime() {
+	public String getStopTime() {
 		return stopTime;
 	}
 
-	public void setStopTime(Timestamp stopTime) {
+	public void setStopTime(String stopTime) {
 		this.stopTime = stopTime;
 	}
 

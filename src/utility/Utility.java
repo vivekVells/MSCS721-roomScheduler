@@ -1,6 +1,7 @@
 package utility;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -129,4 +130,26 @@ public class Utility {
 		return ChronoUnit.DAYS.between(a, b);
 	}
 	
+	public static long getTimeDiffInMinutes(String time1, String time2) {
+	  // long timeDiff = LocalTime.parse(startTime).until(LocalTime.parse(endTime), MINUTES);
+		// long timeDiff = MINUTES.between(LocalTime.parse(startTime), LocalTime.parse(endTime));
+		return Duration.between(LocalTime.parse(time1), LocalTime.parse(time2)).toMinutes();
+	}
+
+	public static boolean isTargetBetweenStartAndStop(String targetTime, String startTime, String stopTime) {
+		if (LocalTime.parse(targetTime).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime).isBefore(LocalTime.parse(stopTime))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean isTargetBetweenStartAndStopExtend(String targetTime1, String targetTime2, String startTime, String stopTime) {
+		if (LocalTime.parse(targetTime1).isBefore(LocalTime.parse(startTime)) && LocalTime.parse(targetTime1).isBefore(LocalTime.parse(stopTime)) 
+				&& LocalTime.parse(targetTime2).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime2).isAfter(LocalTime.parse(stopTime))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

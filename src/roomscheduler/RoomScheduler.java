@@ -8,11 +8,8 @@
  */
 package roomscheduler;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import java.time.Duration;
 
 /**
  * Class to schedule a room
@@ -65,6 +62,9 @@ public class RoomScheduler {
 		System.out.println("\t\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
 		System.out.println("********************************************************************************************************************************************************");
 		System.out.println("Today: " + utility.Utility.getCurrentDateTime());
+		
+		
+		
 		System.out.println();
 	}
 
@@ -303,15 +303,35 @@ public class RoomScheduler {
 	 * @return		true if start and end time duration does not exceed 1 hour and within 15 steps increments
 	 */
 	protected static boolean isMinutesDurationNotExceed60(String startTime, String endTime) {
-		//long timeDiff = LocalTime.parse(startTime).until(LocalTime.parse(endTime), MINUTES);
-		//long timeDiff = MINUTES.between(LocalTime.parse(startTime), LocalTime.parse(endTime));
+		long timeDiff = utility.Utility.getTimeDiffInMinutes(startTime, endTime);
 		
-		long timeDiff = Duration.between(LocalTime.parse(startTime), LocalTime.parse(endTime)).toMinutes();
-		System.out.println("TimeDiff: " + timeDiff);
 		if (timeDiff == 15 || timeDiff == 30 || timeDiff == 45 || timeDiff == 60) {
 			return true;
 		} else {
 			System.out.println("The start time and end time duration difference exceeds 1 hour...\nMaximum allowed duration per meeting is 1 hour...");
+			return false;
+		}
+	}
+	
+	protected static boolean isSameRoomAndTimeBooked(ArrayList<Room> roomList, String name, String startDate, String startTime, String endTime) {
+		boolean status = false;
+		
+		Room currentRoom = getRoomFromName(roomList, name);
+		
+		for (Meeting m : currentRoom.getMeetings()) {
+			if (m.getStartTime().equals(startTime) && m.getStopTime().equals(endTime) 
+					|| utility.Utility.isTargetBetweenStartAndStop(startTime, m.getStartTime(), m.getStopTime())
+					|| utility.Utility.isTargetBetweenStartAndStop(endTime, m.getStartTime(), m.getStopTime()) 
+					|| utility.Utility.isTargetBetweenStartAndStopExtend(startTime, endTime, m.getStartTime(), m.getStopTime())) {
+				status = true;
+				break;
+			}
+		}
+		
+		if (status) {
+			System.out.println("Room already booked in this timing range...\nTry different time duration...");
+			return true;
+		} else {
 			return false;
 		}
 	}
@@ -373,14 +393,18 @@ public class RoomScheduler {
 								
 								if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
 									if (isMinutesDurationNotExceed60(startTime, endTime)) {
-										System.out.print("Subject: ");
-										String subject = keyboard.next();
-										
-										Room curRoom = getRoomFromName(roomList, name);					
-										Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
-										curRoom.addMeeting(meeting);
-										
-										System.out.println("Successfully scheduled meeting!");
+										if (!isSameRoomAndTimeBooked(roomList, name, startDate, startTime, endTime)) {
+											System.out.print("Subject: ");
+											String subject = keyboard.next();
+											
+											Room curRoom = getRoomFromName(roomList, name);					
+											Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
+											curRoom.addMeeting(meeting);
+											
+											System.out.println("Successfully scheduled meeting!");
+										} else {
+											System.out.println("Invalid start and end time inputed...");
+										}
 									} else {
 											System.out.println("Invalid start and end time duration inputed...");
 									}

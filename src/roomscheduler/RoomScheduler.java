@@ -37,15 +37,21 @@ public class RoomScheduler {
 					removeRoom(rooms);
 					break;
 				case 3:
-					scheduleRoom(rooms);
-					break;
-				case 4:
-					listSchedule(rooms);
-					break;
-				case 5:
 					listRooms(rooms);
 					break;
+				case 4:
+					scheduleRoom(rooms);
+					break;
+				case 5:
+					listSchedule(rooms);
+					break;
 				case 6:
+					importRoomSchedule(rooms);
+					break;
+				case 7:
+					exportRoomSchedule(rooms);
+					break;
+				case 8:
 					System.out.println("Quitting the program...");
 					System.exit(0);
 				default:
@@ -77,10 +83,12 @@ public class RoomScheduler {
 		System.out.println("\nMain Menu:");
 		System.out.println("  1 - Add a room");
 		System.out.println("  2 - Remove a room");
-		System.out.println("  3 - Schedule a room");
-		System.out.println("  4 - List Schedule");
-		System.out.println("  5 - List Rooms");
-		System.out.println("  6 - Quit");
+		System.out.println("  3 - List Rooms");
+		System.out.println("  4 - Schedule a room");
+		System.out.println("  5 - List Schedule");
+		System.out.println("  6 - Import Room Schedule");
+		System.out.println("  7 - Export Room Schedule");
+		System.out.println("  8 - Quit");
 		System.out.print("Enter your selection: ");
 		if(keyboard.hasNextInt()) {
 			return keyboard.nextInt();
@@ -92,14 +100,48 @@ public class RoomScheduler {
 				return mainMenu();
 		}
 	}
+	
+	/**
+	 * exportRoomSchedule			Export the room's schedule as JSON file
+	 * <p>
+	 * There is a huge discussion going on over JSON.org vs GSON vs JACKSON vs BOON; As of now, I am going to use JSON.org
+	 * 
+	 * @param roomList
+	 */
+	protected static void exportRoomSchedule(ArrayList<Room> roomList) {
+		String name = "";
+		
+		utility.Utility.clearScreen();
+		roomSchedulerBanner();
+		System.out.println("\t\t\t\t\t\t\t\tEXPORT ROOM SCHEDULE PAGE\n");
+		
+		System.out.print("Room Name: ");
+		name = getRoomName();
+		
+		if (isRoomExists(roomList, name)) {
+			
+		} else {
+			System.out.println("Room does not exists...");
+		}
+		System.out.println("Redirecting to Home Page Menu...");
+		utility.Utility.sleepFor(3000);
+	}
+	
+	/**
+	 * importRoomSchedule			Import the valid JSON file and ....
+	 * 
+	 * @param roomList
+	 */
+	protected static void importRoomSchedule(ArrayList<Room> roomList) {
+		
+	}
 
 	/**
 	 * addRoom To add room with its capacity
 	 * 
 	 * @param roomList List that holds created room objects
 	 */
-	protected static void addRoom(ArrayList<Room> roomList) {
-		
+	protected static void addRoom(ArrayList<Room> roomList) {		
 		String name = "";
 		int capacity = 0;
 		Room newRoom = null;
@@ -484,4 +526,16 @@ public class RoomScheduler {
 		}
 	}
 
+	/**
+	 * Performance Increase Ideas:
+	 * - Have a Single Room Name variable? ?? I am blabbering may be...
+	 * - Code optimization
+	 * 		- conditions check. combine all the conditions if necessary
+	 * 		- use JSON accordingly to the scope of this program. I wish to choose JACKSON since I love Captain Jack Sparrow in Pirates of Car..
+	 * 		- StringBuffer vs String
+	 * 		- Which writer to use
+	 * 		-  
+	 * 		- 
+	 * 		- 
+	 */
 }

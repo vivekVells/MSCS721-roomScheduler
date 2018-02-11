@@ -1,6 +1,6 @@
 /**
  * @author <a href="https://github.com/vivekVells">Vivek Vellaiyappan Surulimuthu</a>
- * @version 1.8
+ * @version java 1.8  || <a href="https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.1/">gson 2.8.1 jar</a>
  */
 
 /**
@@ -8,8 +8,14 @@
  */
 package roomscheduler;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * RoomScheduler			Main driver program to coordinate and make the room scheduling action complete.
@@ -17,10 +23,15 @@ import java.util.Scanner;
  */
 public class RoomScheduler {
 	protected static Scanner keyboard = new Scanner(System.in);
-
+	
+	// its better to create gson instance using GsonBuilder instead of just Gson. 
+	// Advantages include -> @ExposeAnnotation || serializing nulls || custom instance creators || set version support || pretty printing || custom serialize & deserialize  
+	protected static GsonBuilder builder = new GsonBuilder();
+	protected static Gson gson = builder.create();
+	
+	
 	/**
-	 * main			"What giveth will be taketh away!!!" - naaahhh!!!
-	 * 
+	 * main			"What giveth will be taketh away!!!" 
 	 */
 	public static void main(String[] args) {
 		Boolean end = false;
@@ -29,7 +40,7 @@ public class RoomScheduler {
 		while (!end) {
 			switch (mainMenu()) {
 				// Q: If i am not wrong, all the cases should return boolean value so that we can check somewhere whether there is success or failure in completing the option
-							// say, remove a room. returns true if it gets removed. false if not... 
+				// say, remove a room. returns true if it gets removed. false if not... 
 				case 1:
 					addRoom(rooms);
 					break;
@@ -109,22 +120,29 @@ public class RoomScheduler {
 	 * @param roomList
 	 */
 	protected static void exportRoomSchedule(ArrayList<Room> roomList) {
-		String name = "";
-		
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
 		System.out.println("\t\t\t\t\t\t\t\tEXPORT ROOM SCHEDULE PAGE\n");
 		
-		System.out.print("Room Name: ");
-		name = getRoomName();
+		String json = gson.toJson(roomList);
+		//System.out.println(Paths.get(".").toAbsolutePath().normalize().toString());
 		
-		if (isRoomExists(roomList, name)) {
-			
-		} else {
-			System.out.println("Room does not exists...");
+		// Have to resolve the platform dependent path issue
+		String filePath =  "roomscheduler\\src\\resources\\files\\roomExportedFiles\\";
+		String fileName =  "allRooms" + utility.Utility.getCurrentDate() + ".json";
+
+		// using try-with-resources to auto close the writer
+		try (BufferedWriter bWriter = new BufferedWriter(new FileWriter (filePath + fileName))) {
+			bWriter.write(json);
+			System.out.println("File: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
+			utility.Utility.sleepFor(2000);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("File creation not succeeded...");
 		}
+		
 		System.out.println("Redirecting to Home Page Menu...");
-		utility.Utility.sleepFor(3000);
+		utility.Utility.sleepFor(3000); 
 	}
 	
 	/**
@@ -133,7 +151,7 @@ public class RoomScheduler {
 	 * @param roomList
 	 */
 	protected static void importRoomSchedule(ArrayList<Room> roomList) {
-		
+	
 	}
 
 	/**

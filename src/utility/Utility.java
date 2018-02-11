@@ -12,6 +12,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class Utility {
 	/**
 	 * clearScreen() function as of now works only in windows to clear the previous statements available in console window
@@ -178,5 +181,17 @@ public class Utility {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * getPrettyPrintJson			Performs pretty printing of the JSON content
+	 * 
+	 * @param obj
+	 * @return		returns the string in a pretty printed readable way of received object arg
+	 */
+	public static String getPrettyPrintJson(Object obj) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String jsonPrettyPrint = gson.toJson(obj);
+		return jsonPrettyPrint;		
 	}
 }

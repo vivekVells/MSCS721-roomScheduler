@@ -8,7 +8,10 @@
  */
 package roomscheduler;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -129,20 +132,19 @@ public class RoomScheduler {
 		
 		// Have to resolve the platform dependent path issue
 		String filePath =  "roomscheduler\\src\\resources\\files\\roomExportedFiles\\";
-		String fileName =  "allRooms" + utility.Utility.getCurrentDate() + ".json";
+		String fileName =  "allRooms.json";
 
 		// using try-with-resources to auto close the writer
 		try (BufferedWriter bWriter = new BufferedWriter(new FileWriter (filePath + fileName))) {
 			bWriter.write(json);
 			System.out.println("File: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
-			utility.Utility.sleepFor(2000);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("File creation not succeeded...");
 		}
 		
 		System.out.println("Redirecting to Home Page Menu...");
-		utility.Utility.sleepFor(3000); 
+		utility.Utility.sleepFor(2000); 
 	}
 	
 	/**
@@ -151,7 +153,28 @@ public class RoomScheduler {
 	 * @param roomList
 	 */
 	protected static void importRoomSchedule(ArrayList<Room> roomList) {
-	
+		// Have to resolve the platform dependent path issue
+		String filePath =  "roomscheduler\\src\\resources\\files\\roomExportedFiles\\";
+		String fileName =  "allRooms.json";
+		String jsonString = null;
+
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath + fileName))) {
+			jsonString = br.readLine();
+			System.out.println(utility.Utility.getPrettyPrintJson(jsonString));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Unable to open the json file...");
+			e.printStackTrace();
+		}
+		
+		Room[] rooms = gson.fromJson(jsonString, Room[].class);		
+		for (Room room : rooms) {
+			roomList.add(room);
+		}
+				
+		System.out.println("Redirecting to Home Page Menu...");
+		utility.Utility.sleepFor(3000); 
 	}
 
 	/**

@@ -1,0 +1,443 @@
+src/roomscheduler/Meeting.java:2:	Comment is too large: Line too long
+src/roomscheduler/Meeting.java:17:	Avoid using redundant field initializer for 'startDate'
+src/roomscheduler/Meeting.java:17:	fieldCommentRequirement Required
+src/roomscheduler/Meeting.java:18:	Avoid using redundant field initializer for 'startTime'
+src/roomscheduler/Meeting.java:18:	fieldCommentRequirement Required
+src/roomscheduler/Meeting.java:19:	Avoid using redundant field initializer for 'stopTime'
+src/roomscheduler/Meeting.java:19:	fieldCommentRequirement Required
+src/roomscheduler/Meeting.java:20:	Avoid using redundant field initializer for 'subject'
+src/roomscheduler/Meeting.java:20:	fieldCommentRequirement Required
+src/roomscheduler/Meeting.java:23:	Comment is too large: Line too long
+src/roomscheduler/Meeting.java:30:	Parameter 'newEndTime' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:30:	Parameter 'newStartDate' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:30:	Parameter 'newStartTime' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:30:	Parameter 'newSubject' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:31:	Overridable method 'setStartDate' called during object construction
+src/roomscheduler/Meeting.java:32:	Overridable method 'setStartTime' called during object construction
+src/roomscheduler/Meeting.java:33:	Overridable method 'setStopTime' called during object construction
+src/roomscheduler/Meeting.java:38:	Overridable method 'setSubject' called during object construction
+src/roomscheduler/Meeting.java:56:	Parameter 'startDate' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:83:	Parameter 'startTime' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:101:	Parameter 'stopTime' is not assigned and could be declared final
+src/roomscheduler/Meeting.java:119:	Parameter 'subject' is not assigned and could be declared final
+src/roomscheduler/Room.java:2:	Comment is too large: Line too long
+src/roomscheduler/Room.java:17:	Avoid short class names like Room
+src/roomscheduler/Room.java:19:	fieldCommentRequirement Required
+src/roomscheduler/Room.java:20:	fieldCommentRequirement Required
+src/roomscheduler/Room.java:21:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/Room.java:21:	fieldCommentRequirement Required
+src/roomscheduler/Room.java:24:	Comment is too large: Line too long
+src/roomscheduler/Room.java:29:	Parameter 'newRoomCapacity' is not assigned and could be declared final
+src/roomscheduler/Room.java:29:	Parameter 'newRoomName' is not assigned and could be declared final
+src/roomscheduler/Room.java:30:	Overridable method 'setName' called during object construction
+src/roomscheduler/Room.java:36:	Comment is too large: Line too long
+src/roomscheduler/Room.java:40:	Parameter 'newMeeting' is not assigned and could be declared final
+src/roomscheduler/Room.java:54:	Comment is too large: Line too long
+src/roomscheduler/Room.java:57:	Parameter 'name' is not assigned and could be declared final
+src/roomscheduler/Room.java:71:	Comment is too large: Line too long
+src/roomscheduler/Room.java:75:	Parameter 'capacity' is not assigned and could be declared final
+src/roomscheduler/Room.java:84:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/Room.java:89:	Comment is too large: Line too long
+src/roomscheduler/Room.java:93:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/Room.java:93:	Parameter 'meetings' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:2:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:3:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:9:	Possible God class (WMC=73, ATFD=11, TCC=0.0)
+src/roomscheduler/RoomScheduler.java:24:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:27:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/roomscheduler/RoomScheduler.java:27:	The class 'RoomScheduler' has a Cyclomatic Complexity of 4 (Highest = 12).
+src/roomscheduler/RoomScheduler.java:27:	The class 'RoomScheduler' has a Standard Cyclomatic Complexity of 3 (Highest = 10).
+src/roomscheduler/RoomScheduler.java:27:	This class has too many methods, consider refactoring it.
+src/roomscheduler/RoomScheduler.java:28:	fieldCommentRequirement Required
+src/roomscheduler/RoomScheduler.java:31:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:32:	fieldCommentRequirement Required
+src/roomscheduler/RoomScheduler.java:33:	fieldCommentRequirement Required
+src/roomscheduler/RoomScheduler.java:39:	Parameter 'args' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:39:	The method 'main' has a Cyclomatic Complexity of 10.
+src/roomscheduler/RoomScheduler.java:39:	The method 'main' has a Standard Cyclomatic Complexity of 10.
+src/roomscheduler/RoomScheduler.java:40:	Local variable 'end' could be declared final
+src/roomscheduler/RoomScheduler.java:41:	Found 'DU'-anomaly for variable 'rooms' (lines '41'-'76').
+src/roomscheduler/RoomScheduler.java:41:	Local variable 'rooms' could be declared final
+src/roomscheduler/RoomScheduler.java:44:	A switch statement does not contain a break
+src/roomscheduler/RoomScheduler.java:45:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:69:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:70:	System.exit() should not be used in J2EE/JEE apps
+src/roomscheduler/RoomScheduler.java:72:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:73:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:82:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:83:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:84:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:85:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:85:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:86:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:94:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:95:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:96:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:97:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:100:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:101:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:102:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:103:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:104:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:105:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:106:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:107:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:108:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:109:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:111:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:113:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:115:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:116:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:124:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:128:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:128:	Found 'UR'-anomaly for variable 'fileName' (lines '128'-'128').
+src/roomscheduler/RoomScheduler.java:128:	Found 'UR'-anomaly for variable 'filePath' (lines '128'-'128').
+src/roomscheduler/RoomScheduler.java:128:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:129:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:131:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:133:	Local variable 'json' could be declared final
+src/roomscheduler/RoomScheduler.java:137:	Local variable 'filePath' could be declared final
+src/roomscheduler/RoomScheduler.java:138:	Local variable 'fileName' could be declared final
+src/roomscheduler/RoomScheduler.java:143:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:145:	Avoid printStackTrace(); use a logger call instead.
+src/roomscheduler/RoomScheduler.java:146:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:149:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:150:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:158:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:158:	Found 'UR'-anomaly for variable 'fileName' (lines '158'-'158').
+src/roomscheduler/RoomScheduler.java:158:	Found 'UR'-anomaly for variable 'filePath' (lines '158'-'158').
+src/roomscheduler/RoomScheduler.java:158:	Found 'UR'-anomaly for variable 'room' (lines '158'-'176').
+src/roomscheduler/RoomScheduler.java:158:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:160:	Found 'DU'-anomaly for variable 'filePath' (lines '160'-'181').
+src/roomscheduler/RoomScheduler.java:160:	Local variable 'filePath' could be declared final
+src/roomscheduler/RoomScheduler.java:161:	Found 'DU'-anomaly for variable 'fileName' (lines '161'-'181').
+src/roomscheduler/RoomScheduler.java:161:	Local variable 'fileName' could be declared final
+src/roomscheduler/RoomScheduler.java:162:	Found 'DD'-anomaly for variable 'jsonString' (lines '162'-'165').
+src/roomscheduler/RoomScheduler.java:164:	Avoid variables with short names like br
+src/roomscheduler/RoomScheduler.java:166:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:166:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:168:	Avoid printStackTrace(); use a logger call instead.
+src/roomscheduler/RoomScheduler.java:170:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:171:	Avoid printStackTrace(); use a logger call instead.
+src/roomscheduler/RoomScheduler.java:174:	Local variable 'rooms' could be declared final
+src/roomscheduler/RoomScheduler.java:175:	Local variable 'room' could be declared final
+src/roomscheduler/RoomScheduler.java:179:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:180:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:188:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:188:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:189:	Found 'DD'-anomaly for variable 'name' (lines '189'-'198').
+src/roomscheduler/RoomScheduler.java:190:	Found 'DD'-anomaly for variable 'capacity' (lines '190'-'204').
+src/roomscheduler/RoomScheduler.java:190:	Found 'DU'-anomaly for variable 'capacity' (lines '190'-'224').
+src/roomscheduler/RoomScheduler.java:191:	Found 'DD'-anomaly for variable 'newRoom' (lines '191'-'211').
+src/roomscheduler/RoomScheduler.java:191:	Found 'DU'-anomaly for variable 'newRoom' (lines '191'-'224').
+src/roomscheduler/RoomScheduler.java:193:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:195:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:197:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:200:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/roomscheduler/RoomScheduler.java:201:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:206:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:209:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:213:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:216:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:219:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:222:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:222:	The String literal "\nRedirecting to Home Page Menu..." appears 5 times in this file; the first occurrence is on line 222
+src/roomscheduler/RoomScheduler.java:223:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:231:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:233:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:233:	Found 'UR'-anomaly for variable 'room' (lines '233'-'237').
+src/roomscheduler/RoomScheduler.java:233:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:233:	Parameter 'roomName' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:234:	Found 'DD'-anomaly for variable 'status' (lines '234'-'238').
+src/roomscheduler/RoomScheduler.java:236:	Local variable 'room' could be declared final
+src/roomscheduler/RoomScheduler.java:237:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:238:	Found 'DD'-anomaly for variable 'status' (lines '238'-'238').
+src/roomscheduler/RoomScheduler.java:246:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:252:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:252:	Found 'UR'-anomaly for variable 'room' (lines '252'-'257').
+src/roomscheduler/RoomScheduler.java:252:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:252:	Parameter 'roomName' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:253:	Found 'DD'-anomaly for variable 'roomIndex' (lines '253'-'260').
+src/roomscheduler/RoomScheduler.java:253:	Found 'DD'-anomaly for variable 'roomIndex' (lines '253'-'263').
+src/roomscheduler/RoomScheduler.java:256:	Local variable 'room' could be declared final
+src/roomscheduler/RoomScheduler.java:257:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:260:	Found 'DD'-anomaly for variable 'roomIndex' (lines '260'-'260').
+src/roomscheduler/RoomScheduler.java:260:	Found 'DD'-anomaly for variable 'roomIndex' (lines '260'-'263').
+src/roomscheduler/RoomScheduler.java:274:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:274:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:276:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:278:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:280:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/roomscheduler/RoomScheduler.java:281:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:283:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:285:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:285:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:285:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:285:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:285:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:289:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:290:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:299:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:308:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:308:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:309:	Found 'DD'-anomaly for variable 'removeRoom' (lines '309'-'319').
+src/roomscheduler/RoomScheduler.java:309:	Found 'DU'-anomaly for variable 'removeRoom' (lines '309'-'331').
+src/roomscheduler/RoomScheduler.java:311:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:313:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:315:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/roomscheduler/RoomScheduler.java:316:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:318:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:323:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:325:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:329:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:330:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:334:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:340:	Parameter 'currentDate' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:340:	Parameter 'startDate' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:341:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:342:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:343:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:350:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:354:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:356:	Parameter 'currentDate' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:356:	Parameter 'startDate' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:357:	Local variable 'dateDiffInDays' could be declared final
+src/roomscheduler/RoomScheduler.java:357:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:358:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:359:	Avoid using Literals in Conditional Statements
+src/roomscheduler/RoomScheduler.java:360:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:361:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:368:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:371:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:373:	Parameter 'time' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:374:	Local variable 'minuteStamp' could be declared final
+src/roomscheduler/RoomScheduler.java:374:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:375:	Avoid unnecessary if..then..else statements when returning booleans
+src/roomscheduler/RoomScheduler.java:375:	Position literals first in String comparisons
+src/roomscheduler/RoomScheduler.java:375:	Position literals first in String comparisons
+src/roomscheduler/RoomScheduler.java:375:	Position literals first in String comparisons
+src/roomscheduler/RoomScheduler.java:375:	Position literals first in String comparisons
+src/roomscheduler/RoomScheduler.java:375:	Potential violation of Law of Demeter (object not created locally)
+src/roomscheduler/RoomScheduler.java:375:	Potential violation of Law of Demeter (object not created locally)
+src/roomscheduler/RoomScheduler.java:375:	Potential violation of Law of Demeter (object not created locally)
+src/roomscheduler/RoomScheduler.java:375:	Potential violation of Law of Demeter (object not created locally)
+src/roomscheduler/RoomScheduler.java:376:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:383:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:387:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:389:	Parameter 'endTime' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:389:	Parameter 'startTime' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:390:	Local variable 'timeDiff' could be declared final
+src/roomscheduler/RoomScheduler.java:390:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:393:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:395:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:400:	Comment is too large: Too many lines
+src/roomscheduler/RoomScheduler.java:401:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:408:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:410:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:410:	Found 'UR'-anomaly for variable 'm' (lines '410'-'415').
+src/roomscheduler/RoomScheduler.java:410:	Parameter 'endTime' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:410:	Parameter 'name' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:410:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:410:	Parameter 'startDate' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:410:	Parameter 'startTime' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:410:	Rather than using a lot of String arguments, consider using a container object for those values.
+src/roomscheduler/RoomScheduler.java:411:	Found 'DD'-anomaly for variable 'status' (lines '411'-'420').
+src/roomscheduler/RoomScheduler.java:413:	Local variable 'currentRoom' could be declared final
+src/roomscheduler/RoomScheduler.java:414:	Local variable 'm' could be declared final
+src/roomscheduler/RoomScheduler.java:414:	Potential violation of Law of Demeter (object not created locally)
+src/roomscheduler/RoomScheduler.java:415:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:416:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:417:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:418:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:419:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:426:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:427:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:438:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:438:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:438:	The method 'scheduleRoom' has a Cyclomatic Complexity of 12.
+src/roomscheduler/RoomScheduler.java:439:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:441:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:443:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:445:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:453:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/roomscheduler/RoomScheduler.java:454:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:456:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:457:	Local variable 'name' could be declared final
+src/roomscheduler/RoomScheduler.java:459:	Avoid if (x != y) ..; else ..;
+src/roomscheduler/RoomScheduler.java:460:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:463:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:466:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:467:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:468:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:469:	Local variable 'startDate' could be declared final
+src/roomscheduler/RoomScheduler.java:472:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:473:	Comment is too large: Line too long
+src/roomscheduler/RoomScheduler.java:475:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:476:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:477:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:479:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:480:	Found 'DD'-anomaly for variable 'startTime' (lines '480'-'481').
+src/roomscheduler/RoomScheduler.java:481:	Do not hard code the IP address 
+src/roomscheduler/RoomScheduler.java:481:	Prefer StringBuffer over += for concatenating strings
+src/roomscheduler/RoomScheduler.java:483:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:484:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:485:	Found 'DD'-anomaly for variable 'endTime' (lines '485'-'486').
+src/roomscheduler/RoomScheduler.java:486:	Do not hard code the IP address 
+src/roomscheduler/RoomScheduler.java:486:	Prefer StringBuffer over += for concatenating strings
+src/roomscheduler/RoomScheduler.java:488:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:490:	Avoid if (x != y) ..; else ..;
+src/roomscheduler/RoomScheduler.java:491:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:492:	Local variable 'subject' could be declared final
+src/roomscheduler/RoomScheduler.java:494:	Local variable 'curRoom' could be declared final
+src/roomscheduler/RoomScheduler.java:495:	Local variable 'meeting' could be declared final
+src/roomscheduler/RoomScheduler.java:496:	Potential violation of Law of Demeter (object not created locally)
+src/roomscheduler/RoomScheduler.java:498:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:500:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:503:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:506:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:509:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:512:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:517:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:518:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:527:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:527:	Found 'UR'-anomaly for variable 'm' (lines '527'-'545').
+src/roomscheduler/RoomScheduler.java:527:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:528:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:530:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:532:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/roomscheduler/RoomScheduler.java:533:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:535:	System.out.print is used
+src/roomscheduler/RoomScheduler.java:536:	Local variable 'roomName' could be declared final
+src/roomscheduler/RoomScheduler.java:538:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:538:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:539:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:541:	Avoid variables with short names like i
+src/roomscheduler/RoomScheduler.java:541:	Found 'DU'-anomaly for variable 'i' (lines '541'-'556').
+src/roomscheduler/RoomScheduler.java:542:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:544:	Local variable 'm' could be declared final
+src/roomscheduler/RoomScheduler.java:544:	Potential violation of Law of Demeter (method chain calls)
+src/roomscheduler/RoomScheduler.java:545:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:550:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:554:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:555:	Potential violation of Law of Demeter (static property access)
+src/roomscheduler/RoomScheduler.java:564:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/roomscheduler/RoomScheduler.java:564:	Parameter 'name' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:564:	Parameter 'roomList' is not assigned and could be declared final
+src/roomscheduler/RoomScheduler.java:566:	A method should have only one exit point, and that should be the last statement in the method
+src/roomscheduler/RoomScheduler.java:568:	System.out.println is used
+src/roomscheduler/RoomScheduler.java:573:	Comment is too large: Too many lines
+src/roomscheduler/RoomScheduler.java:578:	Comment is too large: Line too long
+src/utility/Utility.java:2:	Comment is too large: Line too long
+src/utility/Utility.java:18:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/utility/Utility.java:20:	Comment is too large: Line too long
+src/utility/Utility.java:24:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:25:	Avoid using if...else statements without curly braces
+src/utility/Utility.java:29:	Avoid printStackTrace(); use a logger call instead.
+src/utility/Utility.java:32:	Avoid using if...else statements without curly braces
+src/utility/Utility.java:32:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:33:	System.out.println is used
+src/utility/Utility.java:41:	Parameter 'seconds' is not assigned and could be declared final
+src/utility/Utility.java:45:	Avoid printStackTrace(); use a logger call instead.
+src/utility/Utility.java:50:	Comment is too large: Line too long
+src/utility/Utility.java:56:	Avoid variables with short names like lt
+src/utility/Utility.java:56:	Local variable 'lt' could be declared final
+src/utility/Utility.java:57:	Local variable 'dtf' could be declared final
+src/utility/Utility.java:58:	Potential violation of Law of Demeter (object not created locally)
+src/utility/Utility.java:62:	Comment is too large: Line too long
+src/utility/Utility.java:68:	Local variable 'ldt' could be declared final
+src/utility/Utility.java:69:	Local variable 'dtf' could be declared final
+src/utility/Utility.java:70:	Potential violation of Law of Demeter (object not created locally)
+src/utility/Utility.java:74:	Comment is too large: Line too long
+src/utility/Utility.java:78:	Local variable 'ldt' could be declared final
+src/utility/Utility.java:79:	Local variable 'dtf' could be declared final
+src/utility/Utility.java:80:	Potential violation of Law of Demeter (object not created locally)
+src/utility/Utility.java:89:	Parameter 'date' is not assigned and could be declared final
+src/utility/Utility.java:92:	A method should have only one exit point, and that should be the last statement in the method
+src/utility/Utility.java:104:	Parameter 'time' is not assigned and could be declared final
+src/utility/Utility.java:107:	A method should have only one exit point, and that should be the last statement in the method
+src/utility/Utility.java:120:	Parameter 'date1' is not assigned and could be declared final
+src/utility/Utility.java:120:	Parameter 'date2' is not assigned and could be declared final
+src/utility/Utility.java:121:	Avoid variables with short names like a
+src/utility/Utility.java:121:	Local variable 'a' could be declared final
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Avoid variables with short names like b
+src/utility/Utility.java:122:	Local variable 'b' could be declared final
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:123:	Potential violation of Law of Demeter (object not created locally)
+src/utility/Utility.java:127:	Comment is too large: Line too long
+src/utility/Utility.java:133:	Parameter 'date1' is not assigned and could be declared final
+src/utility/Utility.java:133:	Parameter 'date2' is not assigned and could be declared final
+src/utility/Utility.java:134:	Avoid variables with short names like a
+src/utility/Utility.java:134:	Local variable 'a' could be declared final
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:134:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Avoid variables with short names like b
+src/utility/Utility.java:135:	Local variable 'b' could be declared final
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:135:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:136:	Potential violation of Law of Demeter (static property access)
+src/utility/Utility.java:140:	Comment is too large: Line too long
+src/utility/Utility.java:144:	Comment is too large: Line too long
+src/utility/Utility.java:146:	Parameter 'time1' is not assigned and could be declared final
+src/utility/Utility.java:146:	Parameter 'time2' is not assigned and could be declared final
+src/utility/Utility.java:147:	Comment is too large: Line too long
+src/utility/Utility.java:148:	Comment is too large: Line too long
+src/utility/Utility.java:149:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:153:	Comment is too large: Line too long
+src/utility/Utility.java:158:	Comment is too large: Line too long
+src/utility/Utility.java:160:	Parameter 'startTime' is not assigned and could be declared final
+src/utility/Utility.java:160:	Parameter 'stopTime' is not assigned and could be declared final
+src/utility/Utility.java:160:	Parameter 'targetTime' is not assigned and could be declared final
+src/utility/Utility.java:161:	Avoid unnecessary if..then..else statements when returning booleans
+src/utility/Utility.java:161:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:161:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:162:	A method should have only one exit point, and that should be the last statement in the method
+src/utility/Utility.java:168:	Comment is too large: Too many lines
+src/utility/Utility.java:169:	Comment is too large: Line too long
+src/utility/Utility.java:175:	Comment is too large: Line too long
+src/utility/Utility.java:177:	Parameter 'startTime' is not assigned and could be declared final
+src/utility/Utility.java:177:	Parameter 'stopTime' is not assigned and could be declared final
+src/utility/Utility.java:177:	Parameter 'targetTime1' is not assigned and could be declared final
+src/utility/Utility.java:177:	Parameter 'targetTime2' is not assigned and could be declared final
+src/utility/Utility.java:177:	Rather than using a lot of String arguments, consider using a container object for those values.
+src/utility/Utility.java:178:	Avoid unnecessary if..then..else statements when returning booleans
+src/utility/Utility.java:178:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:178:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:179:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:179:	Potential violation of Law of Demeter (method chain calls)
+src/utility/Utility.java:180:	A method should have only one exit point, and that should be the last statement in the method
+src/utility/Utility.java:190:	Comment is too large: Line too long
+src/utility/Utility.java:192:	Parameter 'obj' is not assigned and could be declared final
+src/utility/Utility.java:193:	Local variable 'gson' could be declared final
+src/utility/Utility.java:194:	Local variable 'jsonPrettyPrint' could be declared final
+src/utility/Utility.java:195:	Consider simply returning the value vs storing it in local variable 'jsonPrettyPrint'

@@ -1,0 +1,1 @@
+[{"name":"f","capacity":7,"meetings":[]},{"name":"a","capacity":8,"meetings":[{"startDate":"2018-02-15","startTime":"10:15:00","stopTime":"10:30:00","subject":"shortMeeting"},{"startDate":"2018-02-15","startTime":"11:00:00","stopTime":"11:30:00","subject":"shortMeeting"}]},{"name":"c","capacity":8,"meetings":[]}]

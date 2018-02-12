@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -25,10 +28,13 @@ import com.google.gson.GsonBuilder;
  * 
  */
 public class RoomScheduler {
+	private static final String REDIRECT_HOME_PAGE = "\n\nRedirecting to Home Page Menu...";
+	private static final String ROOM_NAME = "Room Name: ";
 	protected static Scanner keyboard = new Scanner(System.in);
+	protected static final Logger log = Logger.getLogger(RoomScheduler.class);
 	
 	// its better to create gson instance using GsonBuilder instead of just Gson. 
-	// Advantages include -> @ExposeAnnotation || serializing nulls || custom instance creators || set version support || pretty printing || custom serialize & deserialize  
+	// Advantages include ExposeAnnotation - serializing nulls - custom instance creators - set version support - pretty printing - custom serialize  and deserialize  
 	protected static GsonBuilder builder = new GsonBuilder();
 	protected static Gson gson = builder.create();
 	
@@ -38,7 +44,11 @@ public class RoomScheduler {
 	 */
 	public static void main(String[] args) {
 		Boolean end = false;
-		ArrayList<Room> rooms = new ArrayList<Room>();
+		ArrayList<Room> rooms = new ArrayList<>();
+		
+		// having hard time configuring the log4j.properties file in the project
+		// using this basic configurator to use basic operation stuffs
+		BasicConfigurator.configure();
 		
 		while (!end) {
 			switch (mainMenu()) {
@@ -66,10 +76,14 @@ public class RoomScheduler {
 					exportRoomSchedule(rooms);
 					break;
 				case 8:
-					System.out.println("Quitting the program...");
-					System.exit(0);
+					log.info("Quitting the program...");
+					utility.Utility.sleepFor(2000);
+					utility.Utility.clearScreen();
+					end = true;
+					break;
 				default:
-					System.out.println("Invalid choice selection. Input only number of choice appropriately. Redirecting to Room Scheduler Home Page Menu....");
+					log.warn("Invalid choice selection. Input only number of choice appropriately...");
+					log.info(REDIRECT_HOME_PAGE);
 					utility.Utility.sleepFor(2000);
 			}
 		}
@@ -79,11 +93,10 @@ public class RoomScheduler {
 	 * roomSchedulerBanner			Just a banner page. Title and stuffs.
 	 */
 	public static void roomSchedulerBanner() {
-		System.out.println("********************************************************************************************************************************************************");
-		System.out.println("\t\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
-		System.out.println("********************************************************************************************************************************************************");
-		System.out.println("Today: " + utility.Utility.getCurrentDateTime());		
-		System.out.println();
+		log.info("********************************************************************************************************************************************************");
+		log.info("\t\t\t\t\t\t\t\tROOM SCHEDULER PAGE");
+		log.info("********************************************************************************************************************************************************");
+		log.info("Today: " + utility.Utility.getCurrentDateTime() + "\n");		
 	}
 
 	/**
@@ -91,25 +104,28 @@ public class RoomScheduler {
 	 * @return user choice selected number
 	 */
 	protected static int mainMenu() {
+		// Q: confused which to use for frequent usage. static methods vs instance methods? 
+		// 		Though i donot have to create instance methods when it is static, i am using lots of static methods here. 
+		// 		So, how much difference am I going to see here coz I have to create only one object and access all other methods through that
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
 		
-		System.out.println("\nMain Menu:");
-		System.out.println("  1 - Add a room");
-		System.out.println("  2 - Remove a room");
-		System.out.println("  3 - List Rooms");
-		System.out.println("  4 - Schedule a room");
-		System.out.println("  5 - List Schedule");
-		System.out.println("  6 - Import Room Schedule");
-		System.out.println("  7 - Export Room Schedule");
-		System.out.println("  8 - Quit");
-		System.out.print("Enter your selection: ");
+		log.info("\nMain Menu:");
+		log.info("\n  1 - Add a room");
+		log.info("\n  2 - Remove a room");
+		log.info("\n  3 - List Rooms");
+		log.info("\n  4 - Schedule a room");
+		log.info("\n  5 - List Schedule");
+		log.info("\n  6 - Import Room Schedule");
+		log.info("\n  7 - Export Room Schedule");
+		log.info("\n  8 - Quit");
+		log.info("Enter your selection: ");
 		if(keyboard.hasNextInt()) {
 			return keyboard.nextInt();
 		} else {
-				System.out.println("Invalid choice selection. Input only number of choice appropriately");
+				log.info("\nInvalid choice selection. Input only number of choice appropriately");
 				keyboard.next();
-				System.out.println("\nRedirecting to Room Scheduler Home Page Menu...");
+				log.info(REDIRECT_HOME_PAGE);
 				utility.Utility.sleepFor(2000);
 				return mainMenu();
 		}
@@ -125,10 +141,9 @@ public class RoomScheduler {
 	protected static void exportRoomSchedule(ArrayList<Room> roomList) {
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
-		System.out.println("\t\t\t\t\t\t\t\tEXPORT ROOM SCHEDULE PAGE\n");
+		log.info("\n\t\t\t\t\t\t\t\tEXPORT ROOM SCHEDULE PAGE\n");
 		
 		String json = gson.toJson(roomList);
-		//System.out.println(Paths.get(".").toAbsolutePath().normalize().toString());
 		
 		// Have to resolve the platform dependent path issue
 		String filePath =  "roomscheduler\\src\\resources\\files\\roomExportedFiles\\";
@@ -137,13 +152,13 @@ public class RoomScheduler {
 		// using try-with-resources to auto close the writer
 		try (BufferedWriter bWriter = new BufferedWriter(new FileWriter (filePath + fileName))) {
 			bWriter.write(json);
-			System.out.println("File: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
+			log.info("\nFile: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
 		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("File creation not succeeded...");
+			log.trace(e);
+			log.error("\nFile creation not succeeded...");
 		}
 		
-		System.out.println("Redirecting to Home Page Menu...");
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(2000); 
 	}
 	
@@ -160,12 +175,12 @@ public class RoomScheduler {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath + fileName))) {
 			jsonString = br.readLine();
-			System.out.println(utility.Utility.getPrettyPrintJson(jsonString));
+			log.info(utility.Utility.getPrettyPrintJson(jsonString) + "\n");
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.trace(e);
 		} catch (IOException e) {
-			System.out.println("Unable to open the json file...");
-			e.printStackTrace();
+			log.error("\nUnable to open the json file...");
+			log.trace(e);
 		}
 		
 		Room[] rooms = gson.fromJson(jsonString, Room[].class);		
@@ -173,7 +188,7 @@ public class RoomScheduler {
 			roomList.add(room);
 		}
 				
-		System.out.println("Redirecting to Home Page Menu...");
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000); 
 	}
 
@@ -183,19 +198,19 @@ public class RoomScheduler {
 	 * @param roomList List that holds created room objects
 	 */
 	protected static void addRoom(ArrayList<Room> roomList) {		
-		String name = "";
+		String name;
 		int capacity = 0;
 		Room newRoom = null;
 		
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
-		System.out.println("\t\t\t\t\t\t\t\tADD ROOM PAGE\n");
+		log.info("\n\t\t\t\t\t\t\t\tADD ROOM PAGE\n");
 		
-		System.out.print("Room Name: ");
+		log.info(ROOM_NAME);
 		name = getRoomName();
 		
-		if (roomList.size() == 0 || !isRoomExists(roomList, name)) {
-			System.out.print("Room capacity: ");
+		if (roomList.isEmpty() || !isRoomExists(roomList, name)) {
+			log.info("Room capacity: ");
 			
 			if (keyboard.hasNextInt()) {
 				capacity = keyboard.nextInt();
@@ -203,20 +218,20 @@ public class RoomScheduler {
 				// Q: why should not this capacity condition be handled in Room.java file since it holds all info related to room. 
 				// RoomScheduler.java file here only helps to schedule. Hmmmmmmmmmmm.....				
 				if (capacity <=0 || capacity >10) {
-					System.out.println("Maximum allowable room capacity is 10...");
+					log.info("\nMaximum allowable room capacity is 10...");
 				} else {
 					newRoom = new Room(name, capacity);
 					roomList.add(newRoom);
-					System.out.println("Room '" + newRoom.getName() + "' is added successfully!");
+					log.info("\nRoom '" + newRoom.getName() + "' is added successfully!");
 				}
 			} else {
-				System.out.println("Input only capacity in numbers...");
+				log.warn("\nInput only capacity in numbers...");
 			}
 		} else {
-				System.out.println("Room ALREADY EXISTS...");
+				log.warn("\nRoom ALREADY EXISTS...");
 		}
-		
-		System.out.println("\nRedirecting to Home Page Menu...");
+		 
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000);
 	}
 	
@@ -272,18 +287,18 @@ public class RoomScheduler {
 		
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
-		System.out.println("\t\t\t\t\t\t\t\tROOM INFORMATION PAGE\n");
+		log.info("\n\t\t\t\t\t\t\t\tROOM INFORMATION PAGE\n");
 		
-		if (roomList.size() == 0) {
-			System.out.println("No rooms available as of now");
+		if (roomList.isEmpty()) {
+			log.info("\nNo rooms available as of now");
 		} else {
-				System.out.println(roomList.size() + " Room(s) available\n");
+				log.info(roomList.size() + " Room(s) available\n\n") ;
 				for (int i=0; i<roomList.size(); i++) {
-					System.out.println(i+1 + ") " + roomList.get(i).getName() + " || Capacity: " + roomList.get(i).getCapacity());
+					log.info(i+1 + ") " + roomList.get(i).getName() + " || Capacity: " + roomList.get(i).getCapacity() + "\n");
 				}
 		}
 		
-		System.out.println("\nRedirecting to Home Page Menu...");
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000);
 	}
 
@@ -307,23 +322,23 @@ public class RoomScheduler {
 		
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
-		System.out.println("\t\t\t\t\t\t\t\tROOM REMOVAL PAGE\n");
+		log.info("\n\t\t\t\t\t\t\t\tROOM REMOVAL PAGE\n");
 		
-		if (roomList.size() == 0) {
-			System.out.println("No rooms available to be removed...");
+		if (roomList.isEmpty()) {
+			log.info("\nNo rooms available to be removed...");
 		} else {
-			System.out.print("\nInput Room to remove: ");
+			log.info("\nInput Room to remove: ");
 			removeRoom = getRoomName();
 			
 			if (isRoomExists(roomList, removeRoom)) {
 				roomList.remove(findRoomIndex(roomList, removeRoom));
-				System.out.println("Room removed successfully!");
+				log.info("\nRoom removed successfully!");
 			} else {
-				System.out.println("Inputted room does not exist or already removed...");
+				log.info("\nInputted room does not exist or already removed...");
 			}
 		}
 		
-		System.out.println("\nRedirecting to Home Page Menu...");
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000);
 	}
 	
@@ -336,7 +351,7 @@ public class RoomScheduler {
 	 */
 	protected static boolean isStartDateBeforeCurrentDate(String startDate, String currentDate) {
 		if (utility.Utility.isDateBefore(startDate, currentDate)) {
-			System.out.println("\nStart Date is before current date...");
+			log.info("\n\nStart Date is before current date...");
 			return true;
 		} else {
 			return false;
@@ -352,9 +367,9 @@ public class RoomScheduler {
 	 */
 	protected static boolean isStartDate30DaysAfterCurrentDate(String startDate, String currentDate) {
 		long dateDiffInDays = utility.Utility.getDateDiffInDays(currentDate, startDate); 
-		System.out.println("dateOfDi: " + dateDiffInDays);
+		log.info("\ndateOfDi: " + dateDiffInDays);
 		if ( dateDiffInDays > 30) {
-			System.out.println("Start Date is 30 days ahead of current date...\n30 days are the maximum allowed duration between start date and current date");
+			log.info("\nStart Date is 30 days ahead of current date...\n30 days are the maximum allowed duration between start date and current date");
 			return true;
 		} else {
 			return false;
@@ -369,11 +384,11 @@ public class RoomScheduler {
 	 */
 	protected static boolean isMinutesRounded15Increments(String time) {
 		String minuteStamp = time.split(":")[1];
-		if (minuteStamp.equals("00") || minuteStamp.equals("15") || minuteStamp.equals("30") || minuteStamp.equals("45")) {
-			return true;
-		} else {
-			return false;
+		Boolean status = true;
+		if (!(minuteStamp.equals("00") || minuteStamp.equals("15") || minuteStamp.equals("30") || minuteStamp.equals("45"))) {
+			status = false;
 		}
+		return status;
 	}
 	
 	/**
@@ -389,7 +404,7 @@ public class RoomScheduler {
 		if (timeDiff == 15 || timeDiff == 30 || timeDiff == 45 || timeDiff == 60) {
 			return true;
 		} else {
-			System.out.println("The start time and end time duration difference exceeds 1 hour...\nMaximum allowed duration per meeting is 1 hour...");
+			log.info("\nThe start time and end time duration difference exceeds 1 hour...\nMaximum allowed duration per meeting is 1 hour...");
 			return false;
 		}
 	}
@@ -404,10 +419,15 @@ public class RoomScheduler {
 	 * @param endTime
 	 * @return		returns true if a room with same date and timing booked against the given start and end time arg
 	 */
-	protected static boolean isSameRoomAndTimeBooked(ArrayList<Room> roomList, String name, String startDate, String startTime, String endTime) {
+	protected static boolean isSameRoomAndTimeBooked(ArrayList<Room> roomList, String name, String startTime, String endTime) {
 		boolean status = false;
 		
 		Room currentRoom = getRoomFromName(roomList, name);
+		
+		if (currentRoom == null) {
+			return false;
+		}
+		
 		for (Meeting m : currentRoom.getMeetings()) {
 			if (m.getStartTime().equals(startTime) 
 					|| m.getStopTime().equals(endTime) 
@@ -420,7 +440,7 @@ public class RoomScheduler {
 		}
 		
 		if (status) {
-			System.out.println("Room already booked in this timing range...\nTry different time duration...");
+			log.info("\nRoom already booked in this timing range...\nTry different time duration...");
 			return true;
 		} else {
 			return false;
@@ -435,11 +455,11 @@ public class RoomScheduler {
 	protected static void scheduleRoom(ArrayList<Room> roomList) {
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
-		System.out.println("\t\t\t\t\t\t\t\tROOM SCHEDULE PAGE\n");
+		log.info("\n\t\t\t\t\t\t\t\tROOM SCHEDULE PAGE\n");
 
 		// Q: how to handle timezone based scheduling conflicts. Unable to find good date time validater. I have to figure out something for this one
 		// Have to handle this aptly. 
-		System.out.println("Note:"
+		log.info("\nNote:"
 				+ "\nRefer Today's date time stamp at top left corner and schedule accordingly."
 				+ "\nInput of Date should be in \"YYYY-mm-dd\" - (e-g): 2018-02-28 "
 				+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 and is in 24 hours format"
@@ -447,14 +467,14 @@ public class RoomScheduler {
 				+ "\nStart and End Time should have minutes such that minutes are of round figures like HH:00 or HH:15 or HH:30 or HH:45"
 				+ "\nStart and End Time difference should be minimum of 15 minutes and maximum of 60 minutes\n");
 		
-		if (roomList.size() == 0) {
-			System.out.println("\nNo rooms available to schedule for now. Contact Room Schedule Manager...");
+		if (roomList.isEmpty()) {
+			log.info("\n\nNo rooms available to schedule for now. Contact Room Schedule Manager...");
 		} else {
-				System.out.print("Room Name: ");
+				log.info(ROOM_NAME);
 				String name = getRoomName();
 				
 				if (!isRoomExists(roomList, name)) {
-					System.out.println("Inputted Room either not exists or removed...");
+					log.info("\nInputted Room either not exists or removed...");
 				} else {					
 	
 						// Q: start date and end date. Hmmm.... should this be handled like timing same for different dates. book? 
@@ -462,56 +482,58 @@ public class RoomScheduler {
 					
 						// Q: endTimeStamp is confusing. Will any user will book a room for more than 1 or 5 hour (max)? 
 						// 	As per endTimeStamp, say there are more than few days difference, say like 2 or 5 days, is that even possible? hmmmm....
-						System.out.print("Start Date (yyyy-mm-dd): ");
+						log.info("Start Date (yyyy-mm-dd): ");
 						String startDate = keyboard.next();
 						
-						// I have an idea here. combining all the if conditions together.. hmmm....
-						// so, its like if (isValidDate() && checkCurrentDateBefore() && checkBefore30DaysFromNow())
-						// now, say checkCurrentDateBefore() returns true if positive; else prints the message "Start date before current date along with false return
-						// alright... let this be for now...
 						if (utility.Utility.isValidDate(startDate) 
 								&& !isStartDateBeforeCurrentDate(startDate, utility.Utility.getCurrentDate()) 
 								&& !isStartDate30DaysAfterCurrentDate(startDate, utility.Utility.getCurrentDate())) {
 							
-							System.out.print("Start Time (HH:MM): ");
+							log.info("Start Time (HH:MM): ");
 							String startTime = keyboard.next();
 							startTime = startTime + ":00";
 							
 							if (utility.Utility.isValidTime(startTime) && isMinutesRounded15Increments(startTime)) {
-								System.out.print("End Time (HH:MM): ");
+								log.info("End Time (HH:MM): ");
 								String endTime = keyboard.next();
 								endTime = endTime + ":00";
 								
+								// have to format this one. throw catch thingy tryout!!
+								// c here... diff date + s timing - ct here
 								if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
 									if (isMinutesDurationNotExceed60(startTime, endTime)) {
-										if (!isSameRoomAndTimeBooked(roomList, name, startDate, startTime, endTime)) {
-											System.out.print("Subject: ");
+										if (!isSameRoomAndTimeBooked(roomList, name, startTime, endTime)) {
+											log.info("Subject: ");
 											String subject = keyboard.next();
 											
 											Room curRoom = getRoomFromName(roomList, name);					
 											Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
-											curRoom.addMeeting(meeting);
 											
-											System.out.println("Successfully scheduled meeting!");
+											if (curRoom != null) {
+												curRoom.addMeeting(meeting);												
+												log.info("\nSuccessfully scheduled meeting!");
+											} else {
+												log.error("Error occurred while scheduling the meeting...");
+											}
 										} else {
-											System.out.println("Invalid start and end time inputed...");
+											log.warn("\nInvalid start and end time inputed...");
 										}
 									} else {
-											System.out.println("Invalid start and end time duration inputed...");
+											log.warn("\nInvalid start and end time duration inputed...");
 									}
 								} else {
-									System.out.println("Invalid end time inputed...");
+									log.warn("\nInvalid end time inputed...");
 								}
 							} else {
-								System.out.println("Invalid start time inputed...");
+								log.warn("\nInvalid start time inputed...");
 							}
 						} else {
-							System.out.println("Invalid start date inputed...");
+							log.warn("\nInvalid start date inputed...");
 						}
 				}
 		}
 		
-		System.out.println("\nRedirecting to Home Page Menu...");
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000);
 	}
 
@@ -524,31 +546,31 @@ public class RoomScheduler {
 	protected static void listSchedule(ArrayList<Room> roomList) {
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
-		System.out.println("\t\t\t\t\t\t\t\tSCHEDULED ROOM INFORMATION PAGE\n");
+		log.info("\n\t\t\t\t\t\t\t\tSCHEDULED ROOM INFORMATION PAGE\n");
 		
-		if (roomList.size() == 0) {
-			System.out.println("No rooms available which are to be scheduled...");
+		if (roomList.isEmpty()) {
+			log.info("\nNo rooms available which are to be scheduled...");
 		} else {
-			System.out.print("Room Name: ");
+			log.info(ROOM_NAME);
 			String roomName = getRoomName();			
 			if (isRoomExists(roomList, roomName)) {
-				if (getRoomFromName(roomList, roomName).getMeetings().size() == 0) {
-					System.out.println("No Meetings being scheduled for this room");
+				if (getRoomFromName(roomList, roomName).getMeetings().isEmpty()) {
+					log.info("\nNo Meetings being scheduled for this room");
 				} else {
 					int i = 0;
-					System.out.println("\n" + roomName + "'s Schedule: \n");
+					log.info("\n\n" + roomName + "'s Schedule: \n");
 
 					for (Meeting m : getRoomFromName(roomList, roomName).getMeetings()) {
-						System.out.println( i + 1 + ") " + m.toString());
+						log.info( i + 1 + ") " + m.toString() + "\n");
 						++i;
 					}
 				}
 			} else {
-				System.out.println("Inputed Room does not exits...");
+				log.info("\nInputed Room does not exits...");
 			}
 		}
 		
-		System.out.println("\nRedirecting to Home Page Menu...");
+		log.info(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000);
 	}
 	
@@ -562,7 +584,7 @@ public class RoomScheduler {
 		if (isRoomExists(roomList, name)) {
 			return roomList.get(findRoomIndex(roomList, name));
 		} else {
-			System.out.println("Given room does not exists...");
+			log.info("\nGiven room does not exists...");
 			return null;
 		}
 	}

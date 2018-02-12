@@ -9,6 +9,7 @@
 package roomscheduler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Room			Class that holds all the spare parts for the Room.
@@ -18,7 +19,7 @@ public class Room {
 	
 	private String name;
 	private int capacity;
-	private ArrayList<Meeting> meetings;
+	private List<Meeting> meetings;
 	
 	/**
 	 * Room			Parameterized constructor that initializes the class member variable's values
@@ -81,7 +82,7 @@ public class Room {
 	 * 
 	 * @return 	returns the meeting list that holds all the meetings info reference
 	 */
-	public ArrayList<Meeting> getMeetings() {
+	public List<Meeting> getMeetings() {
 		return meetings;
 	}
 
@@ -90,7 +91,7 @@ public class Room {
 	 * 
 	 * @param meetings
 	 */
-	public void setMeetings(ArrayList<Meeting> meetings) {
+	public void setMeetings(List<Meeting> meetings) {
 		this.meetings = meetings;
 	}
 	

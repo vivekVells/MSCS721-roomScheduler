@@ -12,26 +12,44 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
+import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Utility {
+
+	protected static final Logger log = Logger.getLogger(Utility.class);
+	
+	/**
+	 * Adding a private constructor to hide the implicit public one.
+	 * Utility classes, which are collections of static members, are not meant to be instantiated. 
+	 * 	Even abstract utility classes, which can be extended, should not have public constructors.
+	 * Java adds an implicit public constructor to every class which does not define at least one explicitly. 
+	 * 	Hence, at least one non-public constructor should be defined.
+	 */
+  private Utility() {
+    throw new IllegalStateException("Utility class");
+  }
+  
 	/**
 	 * clearScreen() function as of now works only in windows to clear the previous statements available in console window
 	 */
 	public static void clearScreen() {  
     try {
         if (System.getProperty("os.name").contains("Windows"))
-			try {
-				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		else
-			Runtime.getRuntime().exec("clear");
-    } catch (IOException ex) {System.out.println(ex);}
-	}
+        	try {
+        		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        	} catch (InterruptedException e) {
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
+      			log.trace(e);
+        	}
+        else
+        	Runtime.getRuntime().exec("clear");
+        } catch (IOException ex) {
+        	log.trace(ex);
+        }
+  }
 	
 	/**
 	 * sleepFor To make the execution of next statement after given arg seconds
@@ -42,7 +60,9 @@ public class Utility {
 		try {
 			Thread.sleep(seconds);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+	    // Restore interrupted state...
+	    Thread.currentThread().interrupt();
+	    log.trace(e);
 		}
 	}
 
@@ -144,8 +164,6 @@ public class Utility {
 	 * @return		returns (long integer) time duration difference in minutes for any given 2 time args 
 	 */
 	public static long getTimeDiffInMinutes(String time1, String time2) {
-	  // long timeDiff = LocalTime.parse(startTime).until(LocalTime.parse(endTime), MINUTES);
-		// long timeDiff = MINUTES.between(LocalTime.parse(startTime), LocalTime.parse(endTime));
 		return Duration.between(LocalTime.parse(time1), LocalTime.parse(time2)).toMinutes();
 	}
 
@@ -158,11 +176,11 @@ public class Utility {
 	 * @return		returns true if first time arg is between other two time args; else false
 	 */
 	public static boolean isTargetBetweenStartAndStop(String targetTime, String startTime, String stopTime) {
-		if (LocalTime.parse(targetTime).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime).isBefore(LocalTime.parse(stopTime))) {
-			return true;
-		} else {
-			return false;
-		}
+		Boolean status = true;
+		if (!(LocalTime.parse(targetTime).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime).isBefore(LocalTime.parse(stopTime)))) {
+			status = false;
+		} 
+		return status;
 	}
 	
 	/**
@@ -175,12 +193,12 @@ public class Utility {
 	 * @return		returns true if first two time arg is between other two time args; else false
 	 */
 	public static boolean isTargetBetweenStartAndStopExtend(String targetTime1, String targetTime2, String startTime, String stopTime) {
-		if (LocalTime.parse(targetTime1).isBefore(LocalTime.parse(startTime)) && LocalTime.parse(targetTime1).isBefore(LocalTime.parse(stopTime)) 
-				&& LocalTime.parse(targetTime2).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime2).isAfter(LocalTime.parse(stopTime))) {
-			return true;
-		} else {
-			return false;
-		}
+		Boolean status = true;
+		if (!(LocalTime.parse(targetTime1).isBefore(LocalTime.parse(startTime)) && LocalTime.parse(targetTime1).isBefore(LocalTime.parse(stopTime)) 
+				&& LocalTime.parse(targetTime2).isAfter(LocalTime.parse(startTime)) && LocalTime.parse(targetTime2).isAfter(LocalTime.parse(stopTime)))) {
+			status = false;
+		} 
+		return status;
 	}
 
 	/**
@@ -191,7 +209,6 @@ public class Utility {
 	 */
 	public static String getPrettyPrintJson(Object obj) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String jsonPrettyPrint = gson.toJson(obj);
-		return jsonPrettyPrint;		
+		return gson.toJson(obj);		
 	}
 }

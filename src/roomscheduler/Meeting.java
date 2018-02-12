@@ -45,7 +45,7 @@ public class Meeting {
 	 * @return		returns the meeting information entities
 	 */
 	public String toString() {
-		return getStartDate() + " | " + getSubject() + ": " + this.getStartTime().toString() + " - " + this.getStopTime();
+		return getStartDate() + " | " + getSubject() + ": " + this.getStartTime() + " - " + this.getStopTime();
 	}
 	
 	/**

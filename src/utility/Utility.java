@@ -32,7 +32,7 @@ public class Utility {
   }
   
 	/**
-	 * clearScreen() function as of now works only in windows to clear the previous statements available in console window
+	 * clearScreen() function as of now works only in microsoft windows to clear the previous statements available in console window
 	 */
 	public static void clearScreen() {  
     try {

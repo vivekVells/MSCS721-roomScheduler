@@ -1,0 +1,6 @@
+mvn install
+mvn package
+mvn site
+mvn clean
+
+C:\Users\maristuser\Desktop\roomscheduler\github>mvn clean install package site

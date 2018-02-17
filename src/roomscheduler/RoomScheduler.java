@@ -419,9 +419,8 @@ public class RoomScheduler {
 	 * @param endTime
 	 * @return		returns true if a room with same date and timing booked against the given start and end time arg
 	 */
-	protected static boolean isSameRoomAndTimeBooked(ArrayList<Room> roomList, String name, String startTime, String endTime) {
+	protected static boolean isSameRoomAndTimeBooked(ArrayList<Room> roomList, String name, String startDate, String startTime, String endTime) {
 		boolean status = false;
-		
 		Room currentRoom = getRoomFromName(roomList, name);
 		
 		if (currentRoom == null) {
@@ -429,18 +428,39 @@ public class RoomScheduler {
 		}
 		
 		for (Meeting m : currentRoom.getMeetings()) {
-			if (m.getStartTime().equals(startTime) 
-					|| m.getStopTime().equals(endTime) 
-					|| utility.Utility.isTargetBetweenStartAndStop(startTime, m.getStartTime(), m.getStopTime())
-					|| utility.Utility.isTargetBetweenStartAndStop(endTime, m.getStartTime(), m.getStopTime()) 
-					|| utility.Utility.isTargetBetweenStartAndStopExtend(startTime, endTime, m.getStartTime(), m.getStopTime())) {
-				status = true;
-				break;
+			if (isSameDateTimeDurationBooked(roomList, name, startDate, startTime, endTime)) {
+				if (m.getStartTime().equals(startTime) 
+						|| m.getStopTime().equals(endTime) 
+						|| utility.Utility.isTargetBetweenStartAndStop(startTime, m.getStartTime(), m.getStopTime())
+						|| utility.Utility.isTargetBetweenStartAndStop(endTime, m.getStartTime(), m.getStopTime()) 
+						|| utility.Utility.isTargetBetweenStartAndStopExtend(startTime, endTime, m.getStartTime(), m.getStopTime())) {
+					status = true;
+					break;
+				}
 			}
 		}
 		
 		if (status) {
 			log.info("\nRoom already booked in this timing range...\nTry different time duration...");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	protected static boolean isSameDateTimeDurationBooked(ArrayList<Room> roomList, String roomName, String startDate, String startTime, String endTime) {
+		boolean status = false;
+		if (!getRoomFromName(roomList, roomName).getMeetings().isEmpty()) {
+			for (Meeting m : getRoomFromName(roomList, roomName).getMeetings()) {
+				if(m.getStartDate().equals(startDate) && m.getStartTime().equals(startTime) && m.getStopTime().equals(endTime)) {
+					status = true;
+					break;
+				}
+			}
+		}
+		
+		if (status) {
+			log.info("\nRoom already booked in this date & timing range...");
 			return true;
 		} else {
 			return false;
@@ -502,7 +522,7 @@ public class RoomScheduler {
 								// c here... diff date + s timing - ct here
 								if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
 									if (isMinutesDurationNotExceed60(startTime, endTime)) {
-										if (!isSameRoomAndTimeBooked(roomList, name, startTime, endTime)) {
+										if (!isSameRoomAndTimeBooked(roomList, name, startDate, startTime, endTime)) {
 											log.info("Subject: ");
 											String subject = keyboard.next();
 											

@@ -190,8 +190,8 @@ public class RoomScheduler {
 		}
 		
 		Room[] rooms = gson.fromJson(jsonString, Room[].class);
-		
-		if (rooms.length == 0) {
+
+		if (rooms == null) {
 			System.out.println("No rooms being imported...\nCheck the json file...");
 		} else {
 			for (Room room : rooms) {

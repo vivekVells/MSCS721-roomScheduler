@@ -40,7 +40,7 @@ View [Parent Repo](https://github.com/gildmi/RoomScheduler) by Professor: Michae
 - Initial code of this was overly simple, intentially uncommented, and buggy which was intended to be used as an extendable framework for testing class assignments.
 
 ## Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))
-[Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan%20Surulimuthu.pdf)
+[Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
 
 ### Application Screenshots (wanna avoid scrolling a lot, use above pdf sheet)
 Beware of the lots of scrolling to come :P

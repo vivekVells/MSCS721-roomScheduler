@@ -142,24 +142,26 @@ public class RoomScheduler {
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
 		System.out.println("\n\t\t\t\t\t\t\t\tEXPORT ROOM SCHEDULE PAGE\n");
-		
+		// correct with no check condition for export
+				
 		String json = gson.toJson(roomList);
-		
+		System.out.println("json: " + json);
 		// Have to resolve the platform dependent path issue
-		String filePath =  "roomscheduler\\src\\resources\\files\\roomExportedFiles\\";
+		String filePath =  "src\\resources\\files\\roomExportedFiles\\";
 		String fileName =  "allRooms.json";
-
+		
 		// using try-with-resources to auto close the writer
 		try (BufferedWriter bWriter = new BufferedWriter(new FileWriter (filePath + fileName))) {
 			bWriter.write(json);
 			System.out.println("\nFile: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
 		} catch (IOException e) {
 			log.trace(e);
+			System.out.println(e);
 			System.out.println("\nFile creation not succeeded...");
 		}
 		
-		log.info(REDIRECT_HOME_PAGE);
-		utility.Utility.sleepFor(2000); 
+		System.out.println(REDIRECT_HOME_PAGE);
+		utility.Utility.sleepFor(3000); 
 	}
 	
 	/**
@@ -168,11 +170,15 @@ public class RoomScheduler {
 	 * @param roomList
 	 */
 	protected static void importRoomSchedule(ArrayList<Room> roomList) {
+		utility.Utility.clearScreen();
+		roomSchedulerBanner();
+		System.out.println("\n\t\t\t\t\t\t\t\tIMPORT ROOM SCHEDULE PAGE\n");
+		
 		// Have to resolve the platform dependent path issue
-		String filePath =  "roomscheduler\\src\\resources\\files\\roomExportedFiles\\";
+		String filePath =  "src\\resources\\files\\roomExportedFiles\\";
 		String fileName =  "allRooms.json";
 		String jsonString = null;
-
+		
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath + fileName))) {
 			jsonString = br.readLine();
 			System.out.println(utility.Utility.getPrettyPrintJson(jsonString) + "\n");
@@ -183,13 +189,30 @@ public class RoomScheduler {
 			log.trace(e);
 		}
 		
-		Room[] rooms = gson.fromJson(jsonString, Room[].class);		
-		for (Room room : rooms) {
-			roomList.add(room);
+		Room[] rooms = gson.fromJson(jsonString, Room[].class);
+		
+		if (rooms.length == 0) {
+			System.out.println("No rooms being imported...\nCheck the json file...");
+		} else {
+			for (Room room : rooms) {
+				roomList.add(room);
+			}
+			
+			System.out.println("File Imported from: " + filePath + fileName);
+			System.out.println("Imported Room(s) & their Schedule(s): \n");
+			
+			for (Room room: roomList) {
+				if (!roomList.isEmpty()) {
+					System.out.println("\n" + room.getName() + "'s Schedule: \n");
+					listRoomSchedule(roomList, room.getName());
+				} else {
+					System.out.println("No rooms available which are being scheduled...");
+				}
+			}
 		}
 				
 		System.out.println(REDIRECT_HOME_PAGE);
-		utility.Utility.sleepFor(3000); 
+		utility.Utility.sleepFor(4000); 
 	}
 
 	/**

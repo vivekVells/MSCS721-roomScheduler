@@ -1,7 +1,29 @@
 # RoomScheduler
 Simple console menu driven room scheduler framework.
 
-## Instructions to run this code in your machine:
+### Project Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))
+- [Video Link]()
+- [Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
+
+### Objective
+- To allow users to create rooms and schedule meeting for it
+### Tech Involved 
+- Java, GSON
+### Features
+- Add a room with max accommodation capacity
+- Remove and view the created room info
+- Schedule room and view the scheduled room info
+- Export room info so that it can be later imported (since this does not use db. to store values we use this one. GSON is used here)
+- Import room info from recently exported room information (GSON is used here.)
+### Concepts I Newly Learnt & Practiced
+- GSON
+- Static code analysis
+- Junit
+### Future Code
+- Enhancement tweaks
+- Moving to better GUI
+
+### Instructions to run this code in your machine:
 #### In Eclipse or such IDE
 - This is very simple, just open the file project pointing to this code repo's src folder
 #### In console (Tested in Windows using GitBash cmd)
@@ -16,7 +38,7 @@ Simple console menu driven room scheduler framework.
     - **git pull origin master**   
   - Type the followings (running the program in a particular path matters)
     - if you are in the created folder then, run like the following
-        - Vivek-Pc@kev MINGW64 /e/RoomScheduler (master)
+        - Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/RoomScheduler (master)
         - $ **java -jar src/resources/files/roomExportedFiles/exportedRoomScheduler.jar** 
     - Or move into all the way to roomExportedFiles folder and then try like the following
         - Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/RoomScheduler/src/resources/files/roomExportedFiles (master)
@@ -40,12 +62,12 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * Review peer code
 * Junit tests
 
+### Modification log
+- All the stuffs I did that involves in the modification of code will be present in this link [Modification Log](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/log) - click this link and view the ***Modification Log.pdf*** file to view the log
+
 ### Note
 View [Parent Repo](https://github.com/gildmi/RoomScheduler) by Professor: Michael Gildein.
 - Initial code of this was overly simple, intentially uncommented, and buggy which was intended to be used as an extendable framework for testing class assignments.
-
-## Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))
-[Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
 
 ### Application Screenshots (wanna avoid scrolling a lot, use above pdf sheet)
 Beware of the lots of scrolling to come :P

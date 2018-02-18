@@ -33,6 +33,8 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * Run static tool analysis and correct stuffs
 * Correct issues in repo reported [Issues in RoomScheduler](https://github.com/vivekVells/MSCS721-roomScheduler/issues)
 * Documenting all the stuffs I did so far
+* Resolving any issues reported 
+* Report any issues of the peers
 
 **Pending objectives:**
 * Review peer code

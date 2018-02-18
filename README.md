@@ -2,7 +2,7 @@
 Simple console menu driven room scheduler framework.
 
 ### Project Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))
-- [Video Link]()
+- [Video Link]() - to be updated soon
 - [Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
 
 ### Objective
@@ -107,5 +107,3 @@ Wow! Appreciate you for scrolling all the way down.
 Highly appreciate if you could test this appln and log the issues or enhancements.
 
 Have a great day!
-
-

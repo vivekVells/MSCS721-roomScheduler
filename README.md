@@ -36,7 +36,7 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * Junit tests
 
 ### Note
-View [Parent Repo](https://github.com/gildmi/RoomScheduler) by Professor: Michael Gildmi
+View [Parent Repo](https://github.com/gildmi/RoomScheduler) by Professor: Michael Gildein.
 - Initial code of this was overly simple, intentially uncommented, and buggy which was intended to be used as an extendable framework for testing class assignments.
 
 ## Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))

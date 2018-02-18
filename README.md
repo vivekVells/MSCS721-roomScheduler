@@ -2,6 +2,9 @@
 Simple console menu driven room scheduler framework.
 
 ## Instructions to run this code in your machine:
+#### In Eclipse or such IDE
+- This is very simple, just open the file project pointing to this code repo's src folder
+#### In console (Tested in Windows using GitBash cmd)
 - Make sure JAVA setup is available in your machine (coded when java was on version 1.8.0_144)
 - Open console command prompt or gitbash (I love git bash. Try this one)
 - Pull this code to your machine and run it (Install git and use git bash for the followings)

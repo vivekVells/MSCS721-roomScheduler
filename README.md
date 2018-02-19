@@ -2,7 +2,7 @@
 Simple console menu driven room scheduler framework.
 
 ### Project Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))
-- [Video Link]() - to be updated soon
+- [Video Link](https://youtu.be/SZC_XPcPJgY)
 - [Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
 
 ### Objective
@@ -19,6 +19,7 @@ Simple console menu driven room scheduler framework.
 - GSON
 - Static code analysis
 - Junit
+- Use Files (here JSON using GSON) instead of Relational DBs
 ### Future Code
 - Enhancement tweaks
 - Moving to better GUI
@@ -57,9 +58,9 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * Documenting all the stuffs I did so far
 * Resolving any issues reported 
 * Report any issues of the peers
+* Review peer code
 
 **Pending objectives:**
-* Review peer code
 * Junit tests
 
 ### Modification log

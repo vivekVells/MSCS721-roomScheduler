@@ -13,7 +13,7 @@ Simple console menu driven room scheduler framework.
 - Add a room with max accommodation capacity
 - Remove and view the created room info
 - Schedule room and view the scheduled room info
-- Export room info so that it can be later imported (since this does not use db. to store values we use this one. GSON is used here)
+- Export room info so that it can be later imported (since this pgm does not use db to store values. GSON is used here to store info)
 - Import room info from recently exported room information (GSON is used here.)
 ### Concepts I Newly Learnt & Practiced
 - GSON

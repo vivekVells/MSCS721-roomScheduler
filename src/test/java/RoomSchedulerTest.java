@@ -14,7 +14,11 @@ package test.java;
 
 import roomscheduler.Room;
 import roomscheduler.Meeting;
+import roomscheduler.RoomScheduler;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,10 +26,11 @@ import org.junit.Test;
 /**
  * RoomSchedulerTest		Contains all junit tests for src/roomscheduler/RoomScheduler.java file
  */
-public class RoomSchedulerTest {
+public class RoomSchedulerTest extends roomscheduler.RoomScheduler {
     
     private Room roomObj = null;
     private Meeting meetObj = null;
+    private RoomScheduler rsObj = null;
     private ArrayList<Room> roomList = null;
     private ArrayList<Meeting> meetingList = null;
     
@@ -47,11 +52,12 @@ public class RoomSchedulerTest {
 	this.roomList.add(roomObj);
 	
 	this.meetingList = new ArrayList<>();
-	this.meetObj = new Meeting("2018-02-20", "03:00", "03:45", "CodingTime");
+	this.meetObj = new Meeting(LocalDate.now().toString(), "03:00", "03:45", "CodingTime");
 	this.meetingList.add(meetObj);
 	
 	this.roomList.get(0).addMeeting(this.meetingList.get(0));
-
+	
+	this.rsObj = new RoomScheduler();
     }
         
     /**
@@ -78,7 +84,7 @@ public class RoomSchedulerTest {
      */
     @Test 
     public void testMeetingStartDateAndTimeEndTimeSubject() {
-	assertEquals("2018-02-20", this.meetingList.get(0).getStartDate());
+	assertEquals(LocalDate.now().toString(), this.meetingList.get(0).getStartDate());
 	assertEquals("03:00", this.meetingList.get(0).getStartTime());
 	assertEquals("03:45", this.meetingList.get(0).getStopTime());
 	assertEquals("CodingTime", this.meetingList.get(0).getSubject());
@@ -93,7 +99,7 @@ public class RoomSchedulerTest {
 	// when this alone was present, the testListSchedule [] why????
 	// this.roomList.get(0).addMeeting(this.meetingList.get(0));
 	
-	assertEquals("2018-02-20", this.roomList.get(0).getMeetings().get(0).getStartDate());
+	assertEquals(LocalDate.now().toString(), this.roomList.get(0).getMeetings().get(0).getStartDate());
 	assertEquals("03:00", this.roomList.get(0).getMeetings().get(0).getStartTime());
 	assertEquals("03:45", this.roomList.get(0).getMeetings().get(0).getStopTime());
 	assertEquals("CodingTime", this.roomList.get(0).getMeetings().get(0).getSubject());
@@ -107,7 +113,7 @@ public class RoomSchedulerTest {
 	int roomSize = this.roomList.size();
 	int meetingSize = this.meetingList.size();
 	
-	assertEquals("2018-02-20", this.roomList.get(roomSize - 1).getMeetings().get(meetingSize - 1).getStartDate());
+	assertEquals(LocalDate.now().toString(), this.roomList.get(roomSize - 1).getMeetings().get(meetingSize - 1).getStartDate());
 	assertEquals("03:00", this.roomList.get(roomSize - 1).getMeetings().get(meetingSize - 1).getStartTime());
 	assertEquals("03:45", this.roomList.get(roomSize - 1).getMeetings().get(meetingSize - 1).getStopTime());
 	assertEquals("CodingTime", this.roomList.get(roomSize - 1).getMeetings().get(meetingSize - 1).getSubject());
@@ -121,6 +127,132 @@ public class RoomSchedulerTest {
 	this.roomList.remove(this.roomList.size()-1);
 	// have to do an indexOutOfBoundException over here and check it. assertThrows() here. Will do it.
 	assertEquals(0, this.roomList.size());
+    }
+    
+    /**
+     * testIsRoomExists		Tests whether the given room exists
+     */
+    @Test
+    public void testIsRoomExists() {
+	this.roomObj = new Room("PartyRoom", 10);
+	this.roomList.add(roomObj);
+	this.roomObj = new Room("RelaxingRoom", 2);
+	this.roomList.add(roomObj);
+	
+	String toFindRoom = "RelaxingRoom";
+	
+	Boolean statusValid = RoomScheduler.isRoomExists(this.roomList, toFindRoom);
+	assertTrue(statusValid);
+	
+	Boolean statusInvalid = RoomScheduler.isRoomExists(this.roomList, "InvalidRoomName");
+	assertFalse(statusInvalid);	
+    }
+    
+    /**
+     * testIsMinutesRounded15Increments		Tests for given time args in rounded steps of 15
+     */
+    @Test
+    public void testIsMinutesRounded15Increments() {
+	String valid1 = "02:00";
+	String valid2 = "02:15";
+	String valid3 = "02:30";
+	String valid4 = "02:45";
+	String invalid1 = "02:12";
+	String invalid2 = "02:19";
+	
+	assertTrue(RoomScheduler.isMinutesRounded15Increments(valid1));
+	assertTrue(RoomScheduler.isMinutesRounded15Increments(valid2));
+	assertTrue(RoomScheduler.isMinutesRounded15Increments(valid3));
+	assertTrue(RoomScheduler.isMinutesRounded15Increments(valid4));
+	assertFalse(RoomScheduler.isMinutesRounded15Increments(invalid1));
+	assertFalse(RoomScheduler.isMinutesRounded15Increments(invalid2));
+    }
+    
+    /**
+     * testGetRoomFromName	Tests for roomObj based on given room name0
+     */
+    @Test
+    public void testGetRoomFromName() {
+	this.roomObj = new Room("PartyRoom", 10);
+	this.roomList.add(roomObj);
+	this.roomObj = new Room("RelaxingRoom", 2);
+	this.roomList.add(roomObj);
+	
+	Room toFindRoomObj = this.roomList.get(1);
+	
+	Room foundRoomObjValid = RoomScheduler.getRoomFromName(roomList, this.roomList.get(1).getName());
+	Room foundRoomObjInvalid = RoomScheduler.getRoomFromName(roomList, "sdfsdfsd");
+	
+	assertTrue(toFindRoomObj.equals(foundRoomObjValid));
+	assertFalse(toFindRoomObj.equals(foundRoomObjInvalid));	
+    }
+    
+    /**
+     * testIsMinutesDurationNotExceed60		Tests for given minutes not exceed 60
+     */
+    @Test
+    public void testIsMinutesDurationNotExceed60() {
+	String valid1 = "02:00";
+	String valid2 = "02:15";
+	String valid3 = "02:30";
+	String valid4 = "02:45";
+	String invalid1 = "02:12";
+	String invalid2 = "02:19";
+	
+	assertTrue(RoomScheduler.isMinutesDurationNotExceed60(valid1, valid2));
+	assertTrue(RoomScheduler.isMinutesDurationNotExceed60(valid2, valid4));
+	assertFalse(RoomScheduler.isMinutesDurationNotExceed60(valid3, valid1));
+	assertFalse(RoomScheduler.isMinutesDurationNotExceed60(invalid1, invalid2));
+    }
+    
+    /**
+     * testIsStartDateBeforeCurrentDate		Tests whether the given start date is before current date
+     */
+    @Test
+    public void testIsStartDateBeforeCurrentDate() {	
+	LocalDate today = LocalDate.now();
+	LocalDate tomorrow = today.plusDays(1);
+	LocalDate yesterday = today.minusDays(1);
+
+	assertFalse(RoomScheduler.isStartDateBeforeCurrentDate(tomorrow.toString(), today.toString()));
+	assertTrue(RoomScheduler.isStartDateBeforeCurrentDate(yesterday.toString(), today.toString()));	
+    }
+    
+    /**
+     * testIsStartDate30DaysAfterCurrentDate	Tests whether start date 30 days after today
+     */
+    @Test
+    public void testIsStartDate30DaysAfterCurrentDate() {
+	LocalDate today = LocalDate.now();
+	LocalDate dateAfter30DaysFromToday = today.plusDays(31);
+	LocalDate dateAfterTodayNotExceeding30Days = today.plusDays(15);
+
+	assertFalse(RoomScheduler.isStartDate30DaysAfterCurrentDate(dateAfterTodayNotExceeding30Days.toString(), today.toString()));
+	assertTrue(RoomScheduler.isStartDate30DaysAfterCurrentDate(dateAfter30DaysFromToday.toString(), today.toString()));
+    }
+    
+    /**
+     * testIsSameDateTimeDurationBooked	Tests whether the same date time duration is already booked or not
+     */
+    @Test
+    public void testIsSameDateTimeDurationBooked() {
+	// Same Date time duration booked
+	assertTrue(RoomScheduler.isSameDateTimeDurationBooked(
+		this.roomList, 
+		"CodingRoom", 
+		this.meetingList.get(0).getStartDate(), 
+		this.meetingList.get(0).getStartTime(),
+		this.meetingList.get(0).getStopTime()
+		));
+	
+	// Different Date with same time duration scheduled
+	assertFalse(RoomScheduler.isSameDateTimeDurationBooked(
+		this.roomList, 
+		"CodingRoom", 
+		LocalDate.now().plusDays(15).toString(), 
+		this.meetingList.get(0).getStartTime(),
+		this.meetingList.get(0).getStopTime()
+		));
     }
     
     /*

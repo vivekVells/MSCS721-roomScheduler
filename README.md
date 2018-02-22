@@ -59,9 +59,10 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * Resolving any issues reported 
 * Report any issues of the peers
 * Review peer code
+* Junit tests
 
 **Pending objectives:**
-* Junit tests
+* bucket_will_be_loaded
 
 ### Modification log
 - All the stuffs I did that involves in the modification of code will be present in this link [Modification Log](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/log) - click this link and view the ***Modification Log.pdf*** file to view the log

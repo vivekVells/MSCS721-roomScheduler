@@ -178,10 +178,42 @@ public class RoomScheduler {
 		String filePath =  "src\\resources\\files\\roomExportedFiles\\";
 		String fileName =  "allRooms.json";
 		String jsonString = null;
-		
+		Boolean duplicateRoomExists = false;
+
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath + fileName))) {
 			jsonString = br.readLine();
 			System.out.println(utility.Utility.getPrettyPrintJson(jsonString) + "\n");
+			
+			Room[] rooms = gson.fromJson(jsonString, Room[].class);
+			ArrayList<Room> tempRoomList = new ArrayList<>();
+			
+			if (rooms == null) {
+				System.out.println("No rooms being imported...\nCheck the json file...");
+			} else {
+				
+				for (Room room : rooms) {
+					if (isRoomExists(roomList, room.getName())) {
+						duplicateRoomExists = true;
+					}
+					
+					if (!isRoomExists(roomList, room.getName())) {
+						roomList.add(room);
+						tempRoomList.add(room);						
+					}
+				}
+				
+				System.out.println("File Imported from: " + filePath + fileName);
+				System.out.println("Imported Room(s) & their Schedule(s): \n");
+				
+				for (Room room: tempRoomList) {
+					if (!roomList.isEmpty()) {
+						System.out.println("\n" + room.getName() + "'s Schedule: \n");
+						listRoomSchedule(roomList, room.getName());
+					} else {
+						System.out.println("No rooms available which are being scheduled...");
+					}
+				}	
+			}
 		} catch (FileNotFoundException e) {
 			log.trace(e);
 		} catch (IOException e) {
@@ -189,26 +221,8 @@ public class RoomScheduler {
 			log.trace(e);
 		}
 		
-		Room[] rooms = gson.fromJson(jsonString, Room[].class);
-
-		if (rooms == null) {
-			System.out.println("No rooms being imported...\nCheck the json file...");
-		} else {
-			for (Room room : rooms) {
-				roomList.add(room);
-			}
-			
-			System.out.println("File Imported from: " + filePath + fileName);
-			System.out.println("Imported Room(s) & their Schedule(s): \n");
-			
-			for (Room room: roomList) {
-				if (!roomList.isEmpty()) {
-					System.out.println("\n" + room.getName() + "'s Schedule: \n");
-					listRoomSchedule(roomList, room.getName());
-				} else {
-					System.out.println("No rooms available which are being scheduled...");
-				}
-			}
+		if (duplicateRoomExists) {
+			System.out.println("Duplicate room import found... Ignored such room imports alone...");
 		}
 				
 		System.out.println(REDIRECT_HOME_PAGE);

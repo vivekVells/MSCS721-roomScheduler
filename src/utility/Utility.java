@@ -57,7 +57,7 @@ public class Utility {
 	 * @param seconds
 	 */
 	public static void sleepFor(int seconds) {
-		try {
+		try { 
 			Thread.sleep(seconds);
 		} catch (InterruptedException e) {
 	    // Restore interrupted state...
@@ -84,6 +84,7 @@ public class Utility {
 	 * @return		returns string of current date in a pattern "yyyy-MM-dd"
 	 */
 	public static String getCurrentDate() {
+	    	sleepFor(1000);
 		// have to use pattern logic here. 
 		LocalDateTime ldt = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");

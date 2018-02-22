@@ -33,7 +33,7 @@ public class Meeting {
 		setStopTime(newEndTime);
 		
 		if (newSubject.isEmpty()) {
-			setSubject("N/A");
+			setSubject("N/A"); 
 		}	else {
 			setSubject(newSubject);
 		}

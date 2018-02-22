@@ -627,7 +627,7 @@ public class RoomScheduler {
 		}
 		
 		System.out.println(REDIRECT_HOME_PAGE);
-		utility.Utility.sleepFor(3000);
+		utility.Utility.sleepFor(3000); 
 	}
 	
 	/**

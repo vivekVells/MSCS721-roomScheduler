@@ -1,0 +1,52 @@
+MVN commands stuffs:
+- mvn install
+- mvn package
+- mvn site
+- mvn clean
+
+C:\Users\maristuser\Desktop\roomscheduler\github>mvn clean install package site
+
+To run mvn test:
+mvn test
+
+By default, mvn install will run all the test stuffs, to skip test stuffs during project building, use the following,
+mvn install -Dmaven.test.skip=true
+
+JUNIT thingys:
+assertEquals(x,y);
+assertArrayEquals(x,y);
+assertTrue(x);
+assertFalse(x);
+assertNull(x);
+assertNotNull(x);
+assertSame(x,y);
+assertNotSame(x,y);
+
+matchers concept:
+assertThat(x, is(y) );
+
+chaining matchers:
+assertThat(x, not( is(y) ) );
+
+CoreMatchers:
+Core
+any()	Matches anything
+is()	A matcher that checks if the given objects are equal.
+describedAs()	Adds a descrption to a Matcher
+
+Logical
+allOf()	Takes an array of matchers, and all matchers must match the target object.
+anyOf()	Takes an array of matchers, and at least one of the matchers must report that it matches the target object.
+not()	Negates the output of the previous matcher.
+
+Object
+equalTo()	A matcher that checks if the given objects are equal.
+instanceOf()	Checks if the given object is of type X or is compatible with type X
+notNullValue() + 
+nullValue()	Tests whether the given object is null or not null.
+sameInstance()	Tests if the given object is the exact same instance as another.
+
+Actually, all of the above are static methods which take different parameters, and return a Matcher.
+
+You will have to play around with matchers a little, before you get the hang of them. They can be quite handy.
+

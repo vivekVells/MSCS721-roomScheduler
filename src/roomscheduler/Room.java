@@ -32,7 +32,7 @@ public class Room {
 		setCapacity(newRoomCapacity);
 		setMeetings(new ArrayList<Meeting>());
 	}
-
+ 
 	/**
 	 * addMeeting			Inserts newly received meeting reference to the class member meetings list
 	 * 

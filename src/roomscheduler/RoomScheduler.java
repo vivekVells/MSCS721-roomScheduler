@@ -24,6 +24,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
+ * Performance Increase Ideas:
+ * - Have a Single Room Name variable? ?? I am blabbering may be...
+ * - Code optimization
+ * 		- conditions check. combine all the conditions if necessary
+ * 		- use JSON accordingly to the scope of this program. I wish to choose JACKSON since I love Captain Jack Sparrow in Pirates of Car..
+ * 		- StringBuffer vs String
+ * 		- Which writer to use
+ * 		-  
+ * 		- 
+ * 		- 
+ */
+
+/**
  * RoomScheduler			Main driver program to coordinate and make the room scheduling action complete.
  * 
  */
@@ -77,11 +90,13 @@ public class RoomScheduler {
 					break;
 				case 8:
 					System.out.println("Quitting the program...");
+					log.info("Quitting the program...");
 					utility.Utility.sleepFor(2000);
 					utility.Utility.clearScreen();
 					end = true;
 					break;
 				default:
+					log.warn("Invalid choice selection. Input only number of choice appropriately...");
 					System.out.println("Invalid choice selection. Input only number of choice appropriately...");
 					System.out.println(REDIRECT_HOME_PAGE);
 					utility.Utility.sleepFor(2000);
@@ -123,6 +138,7 @@ public class RoomScheduler {
 		if(keyboard.hasNextInt()) {
 			return keyboard.nextInt();
 		} else {
+				log.warn("\nInvalid choice selection. Input only number of choice appropriately");
 				System.out.println("\nInvalid choice selection. Input only number of choice appropriately");
 				keyboard.next();
 				System.out.println(REDIRECT_HOME_PAGE);
@@ -153,6 +169,7 @@ public class RoomScheduler {
 		// using try-with-resources to auto close the writer
 		try (BufferedWriter bWriter = new BufferedWriter(new FileWriter (filePath + fileName))) {
 			bWriter.write(json);
+			log.info("\nFile: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
 			System.out.println("\nFile: " + fileName + " was successfully exported. \nLocation: " + filePath + fileName);
 		} catch (IOException e) {
 			log.trace(e);
@@ -216,12 +233,15 @@ public class RoomScheduler {
 			}
 		} catch (FileNotFoundException e) {
 			log.trace(e);
+			log.fatal(e);
 		} catch (IOException e) {
 			System.out.println("\nUnable to open the json file...");
 			log.trace(e);
+			log.error(e);
 		}
 		
 		if (duplicateRoomExists) {
+			log.warn("Duplicate room import found... Ignored such room imports alone...");
 			System.out.println("Duplicate room import found... Ignored such room imports alone...");
 		}
 				
@@ -243,8 +263,7 @@ public class RoomScheduler {
 		roomSchedulerBanner();
 		System.out.println("\n\t\t\t\t\t\t\t\tADD ROOM PAGE\n");
 		
-		System.out.println("Note: "
-												+ "Maximum Allowed Room Capacity: 10\n\n");
+		System.out.println("Note: Maximum Allowed Room Capacity: 10\n\n");
 		
 		System.out.print(ROOM_NAME);
 		name = getRoomName();
@@ -365,6 +384,7 @@ public class RoomScheduler {
 		System.out.println("\n\t\t\t\t\t\t\t\tROOM REMOVAL PAGE\n");
 		
 		if (roomList.isEmpty()) {
+			log.warn("\nNo rooms available to be removed...");
 			System.out.println("\nNo rooms available to be removed...");
 		} else {
 			System.out.print("\nInput Room to remove: ");
@@ -374,6 +394,7 @@ public class RoomScheduler {
 				roomList.remove(findRoomIndex(roomList, removeRoom));
 				System.out.println("\nRoom removed successfully!");
 			} else {
+				log.warn("\nInputted room does not exist or already removed...");
 				System.out.println("\nInputted room does not exist or already removed...");
 			}
 		}
@@ -391,6 +412,7 @@ public class RoomScheduler {
 	 */
 	protected static boolean isStartDateBeforeCurrentDate(String startDate, String currentDate) {
 		if (utility.Utility.isDateBefore(startDate, currentDate)) {
+			log.warn("\n\nStart Date is before current date...");
 			System.out.println("\n\nStart Date is before current date...");
 			return true;
 		} else {
@@ -408,6 +430,7 @@ public class RoomScheduler {
 	protected static boolean isStartDate30DaysAfterCurrentDate(String startDate, String currentDate) {
 		long dateDiffInDays = utility.Utility.getDateDiffInDays(currentDate, startDate); 
 		if ( dateDiffInDays > 30) {
+			log.warn("\nStart Date is 30 days ahead of current date...\n30 days are the maximum allowed duration between start date and current date");
 			System.out.println("\nStart Date is 30 days ahead of current date...\n30 days are the maximum allowed duration between start date and current date");
 			return true;
 		} else {
@@ -443,6 +466,7 @@ public class RoomScheduler {
 		if (timeDiff == 15 || timeDiff == 30 || timeDiff == 45 || timeDiff == 60) {
 			return true;
 		} else {
+			log.warn("\nThe start time and end time duration difference exceeds 1 hour...\nMaximum allowed duration per meeting is 1 hour...");
 			System.out.println("\nThe start time and end time duration difference exceeds 1 hour...\nMaximum allowed duration per meeting is 1 hour...");
 			return false;
 		}
@@ -480,6 +504,7 @@ public class RoomScheduler {
 		}
 		
 		if (status) {
+			log.warn("\nRoom already booked in this timing range...\nTry different time duration...");
 			System.out.println("\nRoom already booked in this timing range...\nTry different time duration...");
 			return true;
 		} else {
@@ -509,6 +534,7 @@ public class RoomScheduler {
 		}
 		
 		if (status) {
+			log.warn("\nRoom already booked in this date & timing range...");
 			System.out.println("\nRoom already booked in this date & timing range...");
 			return true;
 		} else {
@@ -583,21 +609,27 @@ public class RoomScheduler {
 												curRoom.addMeeting(meeting);												
 												System.out.println("\nSuccessfully scheduled meeting!");
 											} else {
+												  log.error("Error occurred while scheduling the meeting...");
 												  System.out.println("Error occurred while scheduling the meeting...");
 											}
 										} else {
+											  log.warn("\nInvalid start and end time inputed...");								
 											  System.out.println("\nInvalid start and end time inputed...");
 										}
 									} else {
+										  log.warn("\nInvalid start and end time duration inputed...");
 										  System.out.println("\nInvalid start and end time duration inputed...");
 									}
 								} else {
+									  log.warn("\nInvalid end time inputed...");
 									  System.out.println("\nInvalid end time inputed...");
 								}
 							} else {
+								  log.warn("\nInvalid start time inputed...");
 								  System.out.println("\nInvalid start time inputed...");
 							}
 						} else {
+							  log.warn("\nInvalid start date inputed...");
 							  System.out.println("\nInvalid start date inputed...");
 						}
 				}
@@ -636,6 +668,7 @@ public class RoomScheduler {
 			} else if (!roomName.equals("ALL_ROOMS")) {
 				listRoomSchedule(roomList, roomName);
 			} else {
+				log.warn("No rooms available which are being scheduled...");
 				System.out.println("No rooms available which are being scheduled...");
 			}
 		}
@@ -662,6 +695,7 @@ public class RoomScheduler {
 				}
 			}
 		} else {
+			log.warn("\nInputed Room does not exits...");
 			System.out.println("\nInputed Room does not exits...");
 		}
 	}
@@ -676,21 +710,9 @@ public class RoomScheduler {
 		if (isRoomExists(roomList, name)) {
 			return roomList.get(findRoomIndex(roomList, name));
 		} else {
+			log.warn("\nGiven room does not exists...");
 			System.out.println("\nGiven room does not exists...");
 			return null;
 		}
 	}
-
-	/**
-	 * Performance Increase Ideas:
-	 * - Have a Single Room Name variable? ?? I am blabbering may be...
-	 * - Code optimization
-	 * 		- conditions check. combine all the conditions if necessary
-	 * 		- use JSON accordingly to the scope of this program. I wish to choose JACKSON since I love Captain Jack Sparrow in Pirates of Car..
-	 * 		- StringBuffer vs String
-	 * 		- Which writer to use
-	 * 		-  
-	 * 		- 
-	 * 		- 
-	 */
 }

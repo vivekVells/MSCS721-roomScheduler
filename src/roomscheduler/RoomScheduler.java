@@ -255,7 +255,7 @@ public class RoomScheduler {
 	 * @param roomList List that holds created room objects
 	 */
 	protected static void addRoom(ArrayList<Room> roomList) {		
-		String name;
+		String name, building, location;
 		int capacity = 0;
 		Room newRoom = null;
 		
@@ -268,6 +268,12 @@ public class RoomScheduler {
 		System.out.print(ROOM_NAME);
 		name = getRoomName();
 		
+		System.out.print("Building Name: ");
+		building = keyboard.next();
+		
+		System.out.print("Location: ");
+		location = keyboard.next();
+		
 		if (roomList.isEmpty() || !isRoomExists(roomList, name)) {
 			System.out.print("Room capacity: ");
 			
@@ -279,7 +285,7 @@ public class RoomScheduler {
 				if (capacity <=0 || capacity >10) {
 					System.out.println("\nMaximum allowable room capacity is 10...");
 				} else {
-					newRoom = new Room(name, capacity);
+					newRoom = new Room(name, capacity, building, location);
 					roomList.add(newRoom);
 					System.out.println("\nRoom '" + newRoom.getName() + "' is added successfully!");
 				}
@@ -353,7 +359,10 @@ public class RoomScheduler {
 		} else {
 				System.out.println(roomList.size() + " Room(s) available\n\n") ;
 				for (int i=0; i<roomList.size(); i++) {
-					System.out.println(i+1 + ") " + roomList.get(i).getName() + " || Capacity: " + roomList.get(i).getCapacity() + "\n");
+					System.out.println(i+1 + ") " + roomList.get(i).getName() 
+							+ " || Capacity: " + roomList.get(i).getCapacity()
+							+ " || Building: " + roomList.get(i).getBuilding()
+							+ " || Location: " + roomList.get(i).getLocation() + "\n");
 				}
 		}
 		

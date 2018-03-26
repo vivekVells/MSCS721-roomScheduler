@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class Room {	
 	
-	private String name;
+	private String name, building, location;
 	private int capacity;
 	private List<Meeting> meetings;
 	
@@ -27,9 +27,11 @@ public class Room {
 	 * @param newRoomName
 	 * @param newRoomCapacity
 	 */
-	public Room(String newRoomName, int newRoomCapacity) {
+	public Room(String newRoomName, int newRoomCapacity, String building, String location) {
 		setName(newRoomName);
 		setCapacity(newRoomCapacity);
+		setBuilding(building);
+		setLocation(location);
 		setMeetings(new ArrayList<Meeting>());
 	}
  
@@ -57,6 +59,40 @@ public class Room {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * setBulding		initialize the received room building name to the class member variable (this) reference
+	 * @param name
+	 */
+	public void setBuilding(String building) {
+		this.building = building;
+	}
+	
+	/**
+	 * getBuilding			Provides the building name of the room
+	 * 
+	 * @return		returns the name of the room
+	 */
+	public String getBuilding() {
+		return this.building;
+	}
+	
+	/**
+	 * setLocation		initialize the received room location name to the class member variable (this) reference
+	 * @param name
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	/**
+	 * getLocation			Provides the location name of the room
+	 * 
+	 * @return		returns the name of the room
+	 */
+	public String getLocation() {
+		return this.location;
 	}
 	
 	/**

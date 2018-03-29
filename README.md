@@ -24,27 +24,6 @@ Simple console menu driven room scheduler framework.
 - Enhancement tweaks
 - Moving to better GUI
 
-### Instructions to run this code in your machine:
-#### In Eclipse or such IDE
-- This is very simple, just open the file project pointing to this code repo's src folder
-#### In console (Tested in Windows using GitBash cmd)
-- Make sure JAVA setup is available in your machine (coded when java was on version 1.8.0_144)
-- Open console command prompt or gitbash (I love git bash. Try this one)
-- Pull this code to your machine and run it (Install git and use git bash for the followings)
-  - Create a folder and do 
-    - **git init**
-  - Add this repo as your remote origin 
-    - **git remote add origin https://github.com/vivekVells/MSCS721-roomScheduler.git**
-  - Pull the code in this repo to your remote origin 
-    - **git pull origin master**   
-  - Type the followings (running the program in a particular path matters)
-    - if you are in the created folder then, run like the following
-        - Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/RoomScheduler (master)
-        - $ **java -jar src/resources/files/roomExportedFiles/exportedRoomScheduler.jar** 
-    - Or move into all the way to roomExportedFiles folder and then try like the following
-        - Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/RoomScheduler/src/resources/files/roomExportedFiles (master)
-        - $ **java -jar exportedRoomScheduler.jar**
-
 ### Tasks | (Program is solid. but waiting for other fellow testers to test and break my code if it has any loop holes)
 **Completed objectives:**
 * Add the ability to import and export the meeting, room, and schedule data to JSON a file
@@ -65,12 +44,34 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * bucket_will_be_loaded
 
 ### Modification log
-- All the stuffs I did that involves in the modification of code will be present in this link [Modification Log](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/log) - click this link and view the ***Modification Log.pdf*** file to view the log
+- All the stuffs I did that involves in the modification of code will be present in this link [Modification Log](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/log) - click this link and view the ***Modification Log*** file 
+- [App Enhancement Log](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/log) - click this link and view the **App Enhancements Information** file
 
 ### Note
 View [Parent Repo](https://github.com/gildmi/RoomScheduler) by Professor: Michael Gildein.
 - Initial code of this was overly simple, intentially uncommented, and buggy which was intended to be used as an extendable framework for testing class assignments.
 
+### Instructions to run this code in your machine:
+#### In Eclipse or such IDE
+- This is very simple, just open the file project pointing to this code repo's src folder
+#### In console (Tested in Windows using GitBash cmd)
+- Make sure JAVA setup is available in your machine (coded when java was on version 1.8.0_144)
+- Open console command prompt or gitbash (I love git bash. Try this one)
+- Pull this code to your machine and run it (Install git and use git bash for the followings)
+  - Create a folder and do 
+    - **git init**
+  - Add this repo as your remote origin 
+    - **git remote add origin https://github.com/vivekVells/MSCS721-roomScheduler.git**
+  - Pull the code in this repo to your remote origin 
+    - **git pull origin master**   
+  - Type the followings (running the program in a particular path matters)
+    - if you are in the created folder then, run like the following
+        - Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/RoomScheduler (master)
+        - $ **java -jar src/resources/files/roomExportedFiles/exportedRoomScheduler.jar** 
+    - Or move into all the way to roomExportedFiles folder and then try like the following
+        - Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/RoomScheduler/src/resources/files/roomExportedFiles (master)
+        - $ **java -jar exportedRoomScheduler.jar**
+        
 ### Application Screenshots (wanna avoid scrolling a lot, use above pdf sheet)
 Beware of the lots of scrolling to come :P
 

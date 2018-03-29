@@ -46,6 +46,9 @@ public class RoomScheduler {
 	protected static Scanner keyboard = new Scanner(System.in);
 	protected static final Logger log = Logger.getLogger(RoomScheduler.class);
 	
+	// this one helps to not display the info like "Room already booked in this timing range... Try different time duration... "
+	private static boolean revealRoolStatus = false;
+	
 	// its better to create gson instance using GsonBuilder instead of just Gson. 
 	// Advantages include ExposeAnnotation - serializing nulls - custom instance creators - set version support - pretty printing - custom serialize  and deserialize  
 	protected static GsonBuilder builder = new GsonBuilder();
@@ -124,6 +127,7 @@ public class RoomScheduler {
 		// 		So, how much difference am I going to see here coz I have to create only one object and access all other methods through that
 		utility.Utility.clearScreen();
 		roomSchedulerBanner();
+		revealRoolStatus = false;
 		
 		System.out.println("\nMain Menu:");
 		System.out.println(" 1 - Add a room");
@@ -513,11 +517,12 @@ public class RoomScheduler {
 		}
 		
 		if (status) {
-			log.warn("\nRoom already booked in this timing range...\nTry different time duration...");
+		    if(!revealRoolStatus)
+			// log.warn("\nRoom already booked in this timing range...\nTry different time duration...");
 			System.out.println("\nRoom already booked in this timing range...\nTry different time duration...");
-			return true;
+		    return true;
 		} else {
-			return false;
+		    return false;
 		}
 	}
 	
@@ -543,12 +548,113 @@ public class RoomScheduler {
 		}
 		
 		if (status) {
-			log.warn("\nRoom already booked in this date & timing range...");
+		    if(!revealRoolStatus)
+			//log.warn("\nRoom already booked in this date & timing range...");
 			System.out.println("\nRoom already booked in this date & timing range...");
-			return true;
+		    return true;
 		} else {
-			return false;
+		    return false;
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	protected static void revealRoomsPerUserTimings(ArrayList<Room> roomList) {
+	    utility.Utility.clearScreen();
+	    roomSchedulerBanner();
+	    System.out.println("\n\t\t\t\t\t\t\t\tROOM SCHEDULE PAGE\n");
+	    
+	    System.out.println("Do you wish to reveal all the available rooms based on your desired timings? Y/N: Y"); 
+	    
+	    System.out.println("\nNote:"
+		+ "\nRefer Today's date time stamp at top left corner and schedule accordingly."
+		+ "\nInput of Date should be in \"YYYY-mm-dd\" - (e-g): 2018-02-28 "
+		+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 and is in 24 hours format"
+		+ "\nStart Date should not be before current date and should not be more than 30 days from now"
+		+ "\nStart and End Time should have minutes such that minutes are of round figures like HH:00 or HH:15 or HH:30 or HH:45"
+		+ "\nStart and End Time difference should be minimum of 15 minutes and maximum of 60 minutes\n");
+	    
+		System.out.print("Start Date (yyyy-mm-dd): ");
+		String startDate = keyboard.next();
+		
+		if (utility.Utility.isValidDate(startDate) 
+				&& !isStartDateBeforeCurrentDate(startDate, utility.Utility.getCurrentDate()) 
+				&& !isStartDate30DaysAfterCurrentDate(startDate, utility.Utility.getCurrentDate())) {
+			
+			System.out.print("Start Time (HH:MM): ");
+			String startTime = keyboard.next();
+			startTime = startTime + ":00";
+			
+			if (utility.Utility.isValidTime(startTime) && isMinutesRounded15Increments(startTime)) {
+				System.out.print("End Time (HH:MM): ");
+				String endTime = keyboard.next();
+				endTime = endTime + ":00";
+				
+				// have to format this one. throw catch thingy tryout!!
+				// c here... diff date + s timing - ct here
+				if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
+					if (isMinutesDurationNotExceed60(startTime, endTime)) {
+					    System.out.print("Subject: ");
+					    String subject = keyboard.next();
+										
+					    String[] strArr = new String[roomList.size()];
+					    int j=0;
+					    for(Room name: roomList) {
+						String roomName = name.getName();
+						if (!isSameRoomAndTimeBooked(roomList, roomName, startDate, startTime, endTime)) {
+						    strArr[j] = roomName;
+						    ++j;
+						}
+					    }
+					    
+					    if(strArr.length == 0) {
+						System.out.println("No Rooms available... Returning to the home page menu...");
+					    } else {
+						System.out.println("\n\nAvailable Rooms in the scheduled range you provided are listed below: ");
+						System.out.println("\tSno   Room Name");
+						for(int i=0; i<strArr.length; i++) {
+						    if(strArr[i] != null) {
+							System.out.println("\t " + (i + 1) + "     " + strArr[i]);						    
+							System.out.println();
+						    }
+						}
+						
+						String selectedRoomName = "";
+						System.out.print("\n\nInput the ROOM NAME to which the meeting to be scheduled: ");
+						selectedRoomName = keyboard.next();
+						    
+						if(isRoomExists(roomList, selectedRoomName)) {
+						    Room curRoom = getRoomFromName(roomList, selectedRoomName);					
+						    Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
+									
+						    if (curRoom != null) {
+							curRoom.addMeeting(meeting);												
+							System.out.println("\nSuccessfully scheduled meeting!");
+						    } else {
+							log.error("Error occurred while scheduling the meeting...");
+							System.out.println("Error occurred while scheduling the meeting...");
+						    }
+						} else {
+						    System.out.println("Invalid Input.. Try again...");
+						}						
+					    }					    					    				
+					} else {
+						  log.warn("\nInvalid start and end time duration inputed...");
+						  System.out.println("\nInvalid start and end time duration inputed...");
+					}
+				} else {
+					  log.warn("\nInvalid end time inputed...");
+					  System.out.println("\nInvalid end time inputed...");
+				}
+			} else {
+				  log.warn("\nInvalid start time inputed...");
+				  System.out.println("\nInvalid start time inputed...");
+			}
+		} else {
+			  log.warn("\nInvalid start date inputed...");
+			  System.out.println("\nInvalid start date inputed...");
+		}    
 	}
 	
 	/**
@@ -561,89 +667,99 @@ public class RoomScheduler {
 		roomSchedulerBanner();
 		System.out.println("\n\t\t\t\t\t\t\t\tROOM SCHEDULE PAGE\n");
 
-		// Q: how to handle timezone based scheduling conflicts. Unable to find good date time validater. I have to figure out something for this one
-		// Have to handle this aptly. 
-		System.out.println("\nNote:"
-				+ "\nRefer Today's date time stamp at top left corner and schedule accordingly."
-				+ "\nInput of Date should be in \"YYYY-mm-dd\" - (e-g): 2018-02-28 "
-				+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 and is in 24 hours format"
-				+ "\nStart Date should not be before current date and should not be more than 30 days from now"
-				+ "\nStart and End Time should have minutes such that minutes are of round figures like HH:00 or HH:15 or HH:30 or HH:45"
-				+ "\nStart and End Time difference should be minimum of 15 minutes and maximum of 60 minutes\n");
+		System.out.print("Do you wish to reveal all the available rooms based on your desired timings? ");
+		System.out.print("Y/N: ");
+		char userDesiredYN;
+		userDesiredYN = keyboard.next().charAt(0);
 		
-		if (roomList.isEmpty()) {
-			System.out.println("\n\nNo rooms available to schedule for now. Contact Room Schedule Manager...");
+		if(userDesiredYN == 'Y' || userDesiredYN == 'y') {
+		    revealRoomsPerUserTimings(roomList); 
 		} else {
-			System.out.print(ROOM_NAME);
-				String name = getRoomName();
-				
-				if (!isRoomExists(roomList, name)) {
-					System.out.println("\nInputted Room either not exists or removed...");
-				} else {					
-	
-						// Q: start date and end date. Hmmm.... should this be handled like timing same for different dates. book? 
-						// 	let me remove end date for now.. will handle this concurrency soon
+		    	revealRoolStatus = false;
+		    	
+			// Q: how to handle timezone based scheduling conflicts. Unable to find good date time validater. I have to figure out something for this one
+			// Have to handle this aptly. 
+			System.out.println("\nNote:"
+					+ "\nRefer Today's date time stamp at top left corner and schedule accordingly."
+					+ "\nInput of Date should be in \"YYYY-mm-dd\" - (e-g): 2018-02-28 "
+					+ "\nInput of Time should be in \"HH:MM\" - (e-g): 10:10 and is in 24 hours format"
+					+ "\nStart Date should not be before current date and should not be more than 30 days from now"
+					+ "\nStart and End Time should have minutes such that minutes are of round figures like HH:00 or HH:15 or HH:30 or HH:45"
+					+ "\nStart and End Time difference should be minimum of 15 minutes and maximum of 60 minutes\n");
+			
+			if (roomList.isEmpty()) {
+				System.out.println("\n\nNo rooms available to schedule for now. Contact Room Schedule Manager...");
+			} else {
+				System.out.print(ROOM_NAME);
+					String name = getRoomName();
 					
-						// Q: endTimeStamp is confusing. Will any user will book a room for more than 1 or 5 hour (max)? 
-						// 	As per endTimeStamp, say there are more than few days difference, say like 2 or 5 days, is that even possible? hmmmm....
-						// M: handle entries that are not in the specified format (applies to date and time)
-					System.out.print("Start Date (yyyy-mm-dd): ");
-						String startDate = keyboard.next();
+					if (!isRoomExists(roomList, name)) {
+						System.out.println("\nInputted Room either not exists or removed...");
+					} else {					
+		
+							// Q: start date and end date. Hmmm.... should this be handled like timing same for different dates. book? 
+							// 	let me remove end date for now.. will handle this concurrency soon
 						
-						if (utility.Utility.isValidDate(startDate) 
-								&& !isStartDateBeforeCurrentDate(startDate, utility.Utility.getCurrentDate()) 
-								&& !isStartDate30DaysAfterCurrentDate(startDate, utility.Utility.getCurrentDate())) {
+							// Q: endTimeStamp is confusing. Will any user will book a room for more than 1 or 5 hour (max)? 
+							// 	As per endTimeStamp, say there are more than few days difference, say like 2 or 5 days, is that even possible? hmmmm....
+							// M: handle entries that are not in the specified format (applies to date and time)
+						System.out.print("Start Date (yyyy-mm-dd): ");
+							String startDate = keyboard.next();
 							
-							System.out.print("Start Time (HH:MM): ");
-							String startTime = keyboard.next();
-							startTime = startTime + ":00";
-							
-							if (utility.Utility.isValidTime(startTime) && isMinutesRounded15Increments(startTime)) {
-								System.out.print("End Time (HH:MM): ");
-								String endTime = keyboard.next();
-								endTime = endTime + ":00";
+							if (utility.Utility.isValidDate(startDate) 
+									&& !isStartDateBeforeCurrentDate(startDate, utility.Utility.getCurrentDate()) 
+									&& !isStartDate30DaysAfterCurrentDate(startDate, utility.Utility.getCurrentDate())) {
 								
-								// have to format this one. throw catch thingy tryout!!
-								// c here... diff date + s timing - ct here
-								if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
-									if (isMinutesDurationNotExceed60(startTime, endTime)) {
-										if (!isSameRoomAndTimeBooked(roomList, name, startDate, startTime, endTime)) {
-											System.out.print("Subject: ");
-											String subject = keyboard.next();
-											
-											Room curRoom = getRoomFromName(roomList, name);					
-											Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
-											
-											if (curRoom != null) {
-												curRoom.addMeeting(meeting);												
-												System.out.println("\nSuccessfully scheduled meeting!");
+								System.out.print("Start Time (HH:MM): ");
+								String startTime = keyboard.next();
+								startTime = startTime + ":00";
+								
+								if (utility.Utility.isValidTime(startTime) && isMinutesRounded15Increments(startTime)) {
+									System.out.print("End Time (HH:MM): ");
+									String endTime = keyboard.next();
+									endTime = endTime + ":00";
+									
+									// have to format this one. throw catch thingy tryout!!
+									// c here... diff date + s timing - ct here
+									if (utility.Utility.isValidTime(endTime) && isMinutesRounded15Increments(endTime)) {	
+										if (isMinutesDurationNotExceed60(startTime, endTime)) {
+											if (!isSameRoomAndTimeBooked(roomList, name, startDate, startTime, endTime)) {
+												System.out.print("Subject: ");
+												String subject = keyboard.next();
+												
+												Room curRoom = getRoomFromName(roomList, name);					
+												Meeting meeting = new Meeting(startDate, startTime, endTime, subject);
+												
+												if (curRoom != null) {
+													curRoom.addMeeting(meeting);												
+													System.out.println("\nSuccessfully scheduled meeting!");
+												} else {
+													  log.error("Error occurred while scheduling the meeting...");
+													  System.out.println("Error occurred while scheduling the meeting...");
+												}
 											} else {
-												  log.error("Error occurred while scheduling the meeting...");
-												  System.out.println("Error occurred while scheduling the meeting...");
+												  log.warn("\nInvalid start and end time inputed...");								
+												  System.out.println("\nInvalid start and end time inputed...");
 											}
 										} else {
-											  log.warn("\nInvalid start and end time inputed...");								
-											  System.out.println("\nInvalid start and end time inputed...");
+											  log.warn("\nInvalid start and end time duration inputed...");
+											  System.out.println("\nInvalid start and end time duration inputed...");
 										}
 									} else {
-										  log.warn("\nInvalid start and end time duration inputed...");
-										  System.out.println("\nInvalid start and end time duration inputed...");
+										  log.warn("\nInvalid end time inputed...");
+										  System.out.println("\nInvalid end time inputed...");
 									}
 								} else {
-									  log.warn("\nInvalid end time inputed...");
-									  System.out.println("\nInvalid end time inputed...");
+									  log.warn("\nInvalid start time inputed...");
+									  System.out.println("\nInvalid start time inputed...");
 								}
 							} else {
-								  log.warn("\nInvalid start time inputed...");
-								  System.out.println("\nInvalid start time inputed...");
+								  log.warn("\nInvalid start date inputed...");
+								  System.out.println("\nInvalid start date inputed...");
 							}
-						} else {
-							  log.warn("\nInvalid start date inputed...");
-							  System.out.println("\nInvalid start date inputed...");
-						}
-				}
-		}
-		
+					}
+			}		   
+		}		
 		System.out.println(REDIRECT_HOME_PAGE);
 		utility.Utility.sleepFor(3000);
 	}
@@ -677,7 +793,7 @@ public class RoomScheduler {
 			} else if (!roomName.equals("ALL_ROOMS")) {
 				listRoomSchedule(roomList, roomName);
 			} else {
-				log.warn("No rooms available which are being scheduled...");
+				// log.warn("No rooms available which are being scheduled...");
 				System.out.println("No rooms available which are being scheduled...");
 			}
 		}
@@ -719,7 +835,7 @@ public class RoomScheduler {
 		if (isRoomExists(roomList, name)) {
 			return roomList.get(findRoomIndex(roomList, name));
 		} else {
-			log.warn("\nGiven room does not exists...");
+			// log.warn("\nGiven room does not exists...");
 			System.out.println("\nGiven room does not exists...");
 			return null;
 		}

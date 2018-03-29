@@ -48,7 +48,7 @@ public class RoomSchedulerTest extends roomscheduler.RoomScheduler {
     @Before
     public void init() {
 	this.roomList = new ArrayList<>();
-	this.roomObj = new Room("CodingRoom", 5);
+	this.roomObj = new Room("CodingRoom", 5, "build", "loca");
 	this.roomList.add(roomObj);
 	
 	this.meetingList = new ArrayList<>();
@@ -134,9 +134,9 @@ public class RoomSchedulerTest extends roomscheduler.RoomScheduler {
      */
     @Test
     public void testIsRoomExists() {
-	this.roomObj = new Room("PartyRoom", 10);
+	this.roomObj = new Room("PartyRoom", 10,"build", "loca");
 	this.roomList.add(roomObj);
-	this.roomObj = new Room("RelaxingRoom", 2);
+	this.roomObj = new Room("RelaxingRoom", 2, "build", "loca");
 	this.roomList.add(roomObj);
 	
 	String toFindRoom = "RelaxingRoom";
@@ -173,9 +173,9 @@ public class RoomSchedulerTest extends roomscheduler.RoomScheduler {
      */
     @Test
     public void testGetRoomFromName() {
-	this.roomObj = new Room("PartyRoom", 10);
+	this.roomObj = new Room("PartyRoom", 10, "build", "loca");
 	this.roomList.add(roomObj);
-	this.roomObj = new Room("RelaxingRoom", 2);
+	this.roomObj = new Room("RelaxingRoom", 2, "build", "loca");
 	this.roomList.add(roomObj);
 	
 	Room toFindRoomObj = this.roomList.get(1);

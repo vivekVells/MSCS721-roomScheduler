@@ -48,6 +48,7 @@ public class Meeting {
 		return getStartDate() + " | " + getSubject() + ": " + this.getStartTime() + " - " + this.getStopTime();
 	}
 	
+	
 	/**
 	 * setStartDate			Sets the start date
 	 * 

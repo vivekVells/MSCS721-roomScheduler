@@ -9,6 +9,7 @@
 package roomscheduler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -119,7 +120,7 @@ public class Room {
 	 * @return 	returns the meeting list that holds all the meetings info reference
 	 */
 	public List<Meeting> getMeetings() {
-		return meetings;
+	   return meetings;
 	}
 
 	/**

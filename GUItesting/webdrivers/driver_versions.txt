@@ -1,3 +1,0 @@
-chrome==2.37
-firefox==0.20.1
-edge==5.16299

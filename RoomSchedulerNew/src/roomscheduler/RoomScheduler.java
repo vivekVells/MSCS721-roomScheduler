@@ -1,6 +1,18 @@
 /**
+ * Yet Another Software License, 1.0
+ *
+ * Lots of text, specifying the users rights, and whatever ...
+ */
+
+/**
  * @author <a href="https://github.com/vivekVells">Vivek Vellaiyappan Surulimuthu</a>
  * @version java 1.8  || <a href="https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.1/">gson 2.8.1 jar</a>
+ */
+
+/**
+ * Yet Another Software License, 1.0
+ *
+ * Lots of text, specifying the users rights, and whatever ...
  */
 
 /**

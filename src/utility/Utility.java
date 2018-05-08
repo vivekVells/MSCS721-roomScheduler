@@ -1,4 +1,10 @@
 /**
+ * Yet Another Software License, 1.0
+ *
+ * Lots of text, specifying the users rights, and whatever ...
+ */
+
+/**
  * utility			package holds all the frequently used and awesome things for the program to function well. Its like Batman's utility belt.
  */
 package utility;

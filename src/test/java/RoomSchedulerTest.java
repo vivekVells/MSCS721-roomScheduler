@@ -1,3 +1,9 @@
+/**
+ * Yet Another Software License, 1.0
+ *
+ * Lots of text, specifying the users rights, and whatever ...
+ */
+
 /*
  * Confirmation: values changed within a @Test function wont have scope outside their block?
  */
@@ -6,6 +12,7 @@
  * @author <a href="https://github.com/vivekVells">Vivek Vellaiyappan Surulimuthu</a>
  * @version java 1.8 
  */
+
 
 /**
  * Contains the JUnit testing of roomScheduler
@@ -16,8 +23,6 @@ import roomscheduler.Room;
 import roomscheduler.Meeting;
 import roomscheduler.RoomScheduler;
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import org.junit.Before;

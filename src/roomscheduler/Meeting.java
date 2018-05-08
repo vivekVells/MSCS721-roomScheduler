@@ -1,4 +1,10 @@
 /**
+ * Yet Another Software License, 1.0
+ *
+ * Lots of text, specifying the users rights, and whatever ...
+ */
+
+/**
  * @author <a href="https://github.com/vivekVells">Vivek Vellaiyappan Surulimuthu</a>
  * @version 1.8
  */

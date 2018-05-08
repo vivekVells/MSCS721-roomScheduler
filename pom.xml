@@ -61,11 +61,63 @@
                	<target>1.8</target>
            	</configuration>
 		</plugin>
-           
-     	<plugin>
-   	    	<groupId>org.apache.maven.plugins</groupId>
-        	<artifactId>maven-site-plugin</artifactId>
-      	</plugin>
+		
+		<!-- apache red hat license plugin -->
+        <plugin>
+            <groupId>org.apache.rat</groupId>
+            <artifactId>apache-rat-plugin</artifactId>
+            <version>0.12</version>
+            <executions>
+                <execution>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <licenses>
+                    <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                        <licenseFamilyCategory>YASL1</licenseFamilyCategory>
+                        <licenseFamilyName>Yet Another Software License (YASL) 1.0</licenseFamilyName>
+                        <notes></notes>
+                        <patterns>
+                            <pattern>Yet Another Software License, 1.0</pattern>
+                        </patterns>
+                    </license>
+                </licenses>
+                <licenseFamilies>
+                    <licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+                        <familyName>Yet Another Software License (YASL) 1.0</familyName>
+                    </licenseFamily>
+                </licenseFamilies>
+                <excludes combine.children="append">
+                    <exclude>lifecycle-executor.txt</exclude>
+                    <exclude>NOTICE.txt</exclude>
+                    <exclude>README.md</exclude>
+                    <exclude>LICENSE.txt</exclude>
+                    <exclude>target/**</exclude>
+                    <exclude>log/**</exclude>
+                    <exclude>/src/assembly/**</exclude>
+                    <exclude>/src/it/**</exclude>
+                    <exclude>/src/site/**</exclude>
+                    <exclude>/src/test/filters/**</exclude>
+                    <exclude>/src/test/resources/**</exclude>
+                    <exclude>/src/main/filters/**</exclude>
+                    <exclude>/src/main/resources/**</exclude>
+                    <exclude>jsonfiles/**</exclude>
+                    <exclude>.idea/**</exclude>
+                    <exclude>.gitattributes</exclude>
+                    <exclude>.gitignore</exclude>
+                    <exclude>pom.xml</exclude>
+                    <exclude>src/resources/**</exclude>
+                    <exclude>target-maven site build as of May 3rd 2018/**</exclude>
+                    <exclude>src/roomscheduler/.scannerwork/**</exclude>
+                	<exclude>src/roomscheduler/sonar-scanner.properties</exclude>
+                	<exclude>.pmd</exclude>
+                </excludes>
+            </configuration>
+        </plugin>		
 	</plugins>
  </build>
   
@@ -123,7 +175,7 @@
 	   <artifactId>junit-vintage-engine</artifactId>
 	   <version>${junit.vintage.version}</version>
 	   <!-- <scope>test</scope> -->
-	</dependency>
+	</dependency>  
   </dependencies> 
    
   <reporting>
@@ -152,7 +204,14 @@
 	            </reports>
 	          </reportSet>
 	        </reportSets>
-	      </plugin>           
-        </plugins>
+	      </plugin>
+	      
+	      <plugin>
+	        <groupId>org.apache.rat</groupId>
+	        <artifactId>apache-rat-plugin</artifactId>
+	        <version>0.12</version>
+	      </plugin>	      
+	                 
+        </plugins>     
     </reporting>
 </project>

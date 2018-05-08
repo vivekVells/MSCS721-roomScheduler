@@ -1,4 +1,10 @@
 /**
+ * Yet Another Software License, 1.0
+ *
+ * Lots of text, specifying the users rights, and whatever ...
+ */
+
+/**
  * @author <a href="https://github.com/vivekVells">Vivek Vellaiyappan Surulimuthu</a>
  * @version 1.8
  */
@@ -6,6 +12,7 @@
 /**
  * package to contain all room schedule activities 
  */
+
 package roomscheduler;
 
 import java.util.ArrayList;
@@ -30,6 +37,10 @@ public class Room {
 	 */
 	public Room(String newRoomName, int newRoomCapacity, String building, String location) {
 		setName(newRoomName);
+		//Try to kill mutant for the set
+		if(this.getName().equals("")) {
+			throw new RuntimeException("Name cannot be empty");
+		}		
 		setCapacity(newRoomCapacity);
 		setBuilding(building);
 		setLocation(location);

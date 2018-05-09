@@ -151,6 +151,8 @@ public class RoomScheduler {
 		System.out.println(" 7 - Export Room Schedule");
 		System.out.println(" 8 - Quit");
 		System.out.print("Enter your selection: ");
+		return keyboard.nextInt();
+		/*
 		if(keyboard.hasNextInt()) {
 			return keyboard.nextInt();
 		} else {
@@ -161,6 +163,7 @@ public class RoomScheduler {
 				utility.Utility.sleepFor(2000);
 				return mainMenu();
 		}
+		*/
 	}
 	
 	/**

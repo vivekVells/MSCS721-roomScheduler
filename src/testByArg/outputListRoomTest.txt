@@ -1,0 +1,81 @@
+********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 13:05:51
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: ********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 13:05:51
+
+
+								ADD ROOM PAGE
+
+Note: Maximum Allowed Room Capacity: 10
+
+
+Room Name: Building Name: Location: Room capacity: 
+Room 'roomNameArg' is added successfully!
+
+
+Redirecting to Home Page Menu...
+********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 13:05:54
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: ********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 13:05:54
+
+
+								ROOM INFORMATION PAGE
+
+1 Room(s) available
+
+
+1) roomNameArg || Capacity: 4 || Building: buildingNameArg || Location: locationNameArg
+
+
+
+Redirecting to Home Page Menu...
+********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 13:05:57
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: Quitting the program...
+[ INFO] Quitting the program...
+0 [main] INFO roomscheduler.RoomScheduler  - Quitting the program...
+

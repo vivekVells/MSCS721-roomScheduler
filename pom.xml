@@ -115,6 +115,10 @@
                     <exclude>src/roomscheduler/.scannerwork/**</exclude>
                 	<exclude>src/roomscheduler/sonar-scanner.properties</exclude>
                 	<exclude>.pmd</exclude>
+                	<exclude>bin/**</exclude>
+                	<exclude>GUItesting/**</exclude>
+                	<exclude>RemoteSystemsTempFiles/**</exclude>
+                	<exclude>/src/testByArg/**</exclude>
                 </excludes>
             </configuration>
         </plugin>		

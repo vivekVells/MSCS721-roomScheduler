@@ -1,0 +1,83 @@
+********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 14:05:12
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: ********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 14:05:12
+
+
+								ADD ROOM PAGE
+
+Note: Maximum Allowed Room Capacity: 10
+
+
+Room Name: Building Name: Location: Room capacity: 
+Room 'roomNameArg' is added successfully!
+
+
+Redirecting to Home Page Menu...
+********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 14:05:15
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: ********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 14:05:15
+
+
+								ADD ROOM PAGE
+
+Note: Maximum Allowed Room Capacity: 10
+
+
+Room Name: Building Name: Location: 
+Room ALREADY EXISTS...
+
+
+Redirecting to Home Page Menu...
+********************************************************************************************************************************************************
+								ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/10 14:05:18
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: [ WARN] 
+Invalid choice selection. Input only number of choice appropriately
+0 [main] WARN roomscheduler.RoomScheduler  - 
+Invalid choice selection. Input only number of choice appropriately
+
+Invalid choice selection. Input only number of choice appropriately

@@ -1,0 +1,110 @@
+Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/roomScheduler/docker-implementation (master)
+$ docker build -t docker-implementation:latest .
+Sending build context to Docker daemon    100MB
+Step 1/4 : FROM java:8
+ ---> d23bdf5b1b1b
+Step 2/4 : COPY . /var/www/java
+ ---> 635e0b0cab23
+Step 3/4 : WORKDIR /var/www/java
+Removing intermediate container c3330a775914
+ ---> e8b9c0014965
+Step 4/4 : CMD ["java", "-jar", "roomscheduler.jar"]
+ ---> Running in c78022c93d98
+Removing intermediate container c78022c93d98
+ ---> fbc33913dbee
+Successfully built fbc33913dbee
+Successfully tagged docker-implementation:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+
+Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/roomScheduler/docker-implementation (master)
+$ docker run -it docker-implementation:latest
+********************************************************************************************************************************************************
+                                                                ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/11 03:05:18
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: 1
+********************************************************************************************************************************************************
+                                                                ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/11 03:05:25
+
+
+                                                                ADD ROOM PAGE
+
+Note: Maximum Allowed Room Capacity: 10
+
+
+Room Name: RoomAddedViaDocker
+Building Name: BuildingArg
+Location: LocationArg
+Room capacity: 10
+
+Room 'RoomAddedViaDocker' is added successfully!
+
+
+Redirecting to Home Page Menu...
+********************************************************************************************************************************************************
+                                                                ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/11 03:05:47
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: 3
+********************************************************************************************************************************************************
+                                                                ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/11 03:05:55
+
+
+                                                                ROOM INFORMATION PAGE
+
+1 Room(s) available
+
+
+1) RoomAddedViaDocker || Capacity: 10 || Building: BuildingArg || Location: LocationArg
+
+
+
+Redirecting to Home Page Menu...
+********************************************************************************************************************************************************
+                                                                ROOM SCHEDULER PAGE
+********************************************************************************************************************************************************
+Today: 2018/05/11 03:05:58
+
+
+Main Menu:
+ 1 - Add a room
+ 2 - Remove a room
+ 3 - List Rooms
+ 4 - Schedule a room
+ 5 - List Schedule
+ 6 - Import Room Schedule
+ 7 - Export Room Schedule
+ 8 - Quit
+Enter your selection: 8
+Quitting the program...
+[ INFO] Quitting the program...
+0 [main] INFO roomscheduler.RoomScheduler  - Quitting the program...
+
+Vivek-Pc@kev MINGW64 /e/Marist/Semester2/SoftwareVerificationAndMaintenance/roomScheduler/docker-implementation (master)
+$

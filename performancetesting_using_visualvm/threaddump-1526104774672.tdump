@@ -1,0 +1,204 @@
+2018-05-12 01:59:34
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.161-b12 mixed mode):
+
+"RMI TCP Connection(5)-192.168.99.1" #33 daemon prio=5 os_prio=0 tid=0x00000000198ec800 nid=0xbd8 runnable [0x0000000020f4d000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	- locked <0x000000008201e918> (a java.io.BufferedInputStream)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler$$Lambda$13/1147403317.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- <0x000000008201ead8> (a java.util.concurrent.ThreadPoolExecutor$Worker)
+
+"RMI TCP Connection(idle)" #28 daemon prio=5 os_prio=0 tid=0x00000000198cb000 nid=0x2d7c waiting on condition [0x000000001ed4e000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000081c52ea8> (a java.util.concurrent.SynchronousQueue$TransferStack)
+	at java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+	at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(Unknown Source)
+	at java.util.concurrent.SynchronousQueue$TransferStack.transfer(Unknown Source)
+	at java.util.concurrent.SynchronousQueue.poll(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- None
+
+"*** Profiler Agent Special Execution Thread 6" #21 daemon prio=5 os_prio=0 tid=0x000000001936d000 nid=0x241c in Object.wait() [0x000000001e44f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Unknown Source)
+	at org.netbeans.lib.profiler.server.ProfilerServer$SeparateCmdExecutionThread.run(ProfilerServer.java:290)
+	- locked <0x0000000081c39c40> (a java.lang.Object)
+
+   Locked ownable synchronizers:
+	- None
+
+"*** JFluid Monitor thread ***" #20 daemon prio=10 os_prio=2 tid=0x000000001b31c800 nid=0x2f1c waiting on condition [0x000000001e34f000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.netbeans.lib.profiler.server.Monitors$SurvGenAndThreadsMonitor.run(Monitors.java:186)
+
+   Locked ownable synchronizers:
+	- None
+
+"*** Profiler Agent Communication Thread" #19 daemon prio=10 os_prio=2 tid=0x0000000019cff800 nid=0x1678 runnable [0x000000001e24e000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.ObjectInputStream$PeekInputStream.peek(Unknown Source)
+	at java.io.ObjectInputStream$BlockDataInputStream.readBlockHeader(Unknown Source)
+	at java.io.ObjectInputStream$BlockDataInputStream.refill(Unknown Source)
+	at java.io.ObjectInputStream$BlockDataInputStream.read(Unknown Source)
+	at java.io.ObjectInputStream.read(Unknown Source)
+	at org.netbeans.lib.profiler.wireprotocol.WireIO.receiveCommandOrResponse(WireIO.java:88)
+	at org.netbeans.lib.profiler.server.ProfilerServer.listenToClient(ProfilerServer.java:1767)
+	at org.netbeans.lib.profiler.server.ProfilerServer.run(ProfilerServer.java:700)
+
+   Locked ownable synchronizers:
+	- None
+
+"JMX server connection timeout 14" #14 daemon prio=5 os_prio=0 tid=0x00000000198bc800 nid=0x764 in Object.wait() [0x000000001a9af000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.sun.jmx.remote.internal.ServerCommunicatorAdmin$Timeout.run(Unknown Source)
+	- locked <0x0000000081c53480> (a [I)
+	at java.lang.Thread.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- None
+
+"RMI Scheduler(0)" #13 daemon prio=5 os_prio=0 tid=0x00000000198b9800 nid=0x1354 waiting on condition [0x000000001a8af000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x0000000081d39818> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- None
+
+"RMI TCP Accept-0" #11 daemon prio=5 os_prio=0 tid=0x00000000198b4000 nid=0x8c0 runnable [0x000000001a5ae000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.DualStackPlainSocketImpl.accept0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketAccept(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.accept(Unknown Source)
+	at java.net.PlainSocketImpl.accept(Unknown Source)
+	- locked <0x0000000081d2f428> (a java.net.SocksSocketImpl)
+	at java.net.ServerSocket.implAccept(Unknown Source)
+	at java.net.ServerSocket.accept(Unknown Source)
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(Unknown Source)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- None
+
+"Service Thread" #9 daemon prio=9 os_prio=0 tid=0x00000000191a8800 nid=0x2340 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C1 CompilerThread2" #8 daemon prio=9 os_prio=2 tid=0x0000000017821800 nid=0x1cd4 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread1" #7 daemon prio=9 os_prio=2 tid=0x0000000017815800 nid=0x12e8 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"C2 CompilerThread0" #6 daemon prio=9 os_prio=2 tid=0x0000000017812800 nid=0x1fa0 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"Attach Listener" #5 daemon prio=5 os_prio=2 tid=0x0000000017811000 nid=0x2044 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=2 tid=0x000000001780e000 nid=0x1474 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+   Locked ownable synchronizers:
+	- None
+
+"Finalizer" #3 daemon prio=8 os_prio=1 tid=0x0000000002cdc000 nid=0x17f0 in Object.wait() [0x0000000018b7e000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+	- locked <0x0000000081d4fe38> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- None
+
+"Reference Handler" #2 daemon prio=10 os_prio=2 tid=0x00000000177d9000 nid=0x2df4 in Object.wait() [0x0000000018a7f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Unknown Source)
+	at java.lang.ref.Reference.tryHandlePending(Unknown Source)
+	- locked <0x0000000081d4fe78> (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Unknown Source)
+
+   Locked ownable synchronizers:
+	- None
+
+"main" #1 prio=5 os_prio=0 tid=0x0000000000ffe000 nid=0x1b74 waiting on condition [0x0000000002bdf000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at utility.Utility.sleepFor(Utility.java:70)
+	at roomscheduler.RoomScheduler.listRooms(RoomScheduler.java:388)
+	at roomscheduler.RoomScheduler.main(Redefined)
+
+   Locked ownable synchronizers:
+	- None
+
+"VM Thread" os_prio=2 tid=0x00000000177d7000 nid=0x1e3c runnable 
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x0000000002bf7800 nid=0x2a04 runnable 
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x0000000002bf9000 nid=0x17e4 runnable 
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x0000000002bfa800 nid=0x120c runnable 
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x0000000002bfd000 nid=0x2b28 runnable 
+
+"VM Periodic Task Thread" os_prio=2 tid=0x000000001786c800 nid=0x2130 waiting on condition 
+
+JNI global references: 291
+

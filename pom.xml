@@ -119,6 +119,10 @@
                 	<exclude>GUItesting/**</exclude>
                 	<exclude>RemoteSystemsTempFiles/**</exclude>
                 	<exclude>/src/testByArg/**</exclude>
+                	<exclude>docker-implementation/**</exclude>
+                	<exclude>jmeter/**</exclude>
+                	<exclude>mutationTesting/**</exclude>
+                	<exclude>visualvm/**</exclude>
                 </excludes>
             </configuration>
         </plugin>		
@@ -126,6 +130,18 @@
  </build>
   
   <dependencies>
+  
+  	<!--  https://www.seleniumtests.com/2017/02/test-java-classes-with-jmeter.html  -->
+	<dependency>
+	    <groupId>org.apache.jmeter</groupId>
+	    <artifactId>ApacheJMeter_core</artifactId>
+	    <version>3.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.jmeter</groupId>
+	    <artifactId>ApacheJMeter_java</artifactId>
+	    <version>3.0</version>
+	</dependency>  
 
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>

@@ -1,0 +1,13 @@
+blockA	Input	Output	blockB	blockC	blockD	blockE
+-h	NA	NA	NA	blockCInput	blockDInput	blockEInput
+-v	-i input.txt	NA	-g "someinput"	-d	-s	-a
+NA	NA	-o combinatorial_testing_output.txt	-g "someinput"	blockCInput	-s	blockEInput
+NA	-n "someinput"	-o combinatorial_testing_output.txt	-f "someinput"	-d	blockDInput	-a
+-v	-i input.txt	-o combinatorial_testing_output.txt	-f "someinput"	blockCInput	blockDInput	blockEInput
+-v	-n "someinput"	NA	-g "someinput"	-d	blockDInput	blockEInput
+NA	-n "someinput"	-o combinatorial_testing_output.txt	NA	blockCInput	-s	-a
+NA	-n "someinput"	NA	-l "someinput"	-d	-s	-a
+-v	NA	-o combinatorial_testing_output.txt	-l "someinput"	-d	blockDInput	-a
+NA	-i input.txt	-o combinatorial_testing_output.txt	-l "someinput"	blockCInput	-s	blockEInput
+-v	-i input.txt	NA	NA	-d	blockDInput	blockEInput
+-v	NA	NA	-f "someinput"	-d	-s	-a

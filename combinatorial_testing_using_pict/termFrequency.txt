@@ -1,0 +1,17 @@
+blockA: -h,-v, NA
+
+Input: -i input.txt,-n "someinput",NA 
+
+Output: -o combinatorial_testing_output.txt,NA
+
+blockB: -f "someinput",-l "someinput",-g "someinput", NA
+
+blockC: -d, blockCInput
+blockD: -s, blockDInput
+
+blockE: -a, blockEInput
+
+if [blockA]= "-h" 
+  then 
+    [input] =  "NA" and [output] ="NA" and [blockB] ="NA" and [blockC] ="blockCInput" and [blockD] ="blockDInput"and [blockE] ="blockEInput";
+

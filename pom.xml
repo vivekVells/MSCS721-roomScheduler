@@ -123,6 +123,10 @@
                 	<exclude>jmeter/**</exclude>
                 	<exclude>mutationTesting/**</exclude>
                 	<exclude>visualvm/**</exclude>
+									<exclude>combinatorial_testing_using_pict/**</exclude>
+									<exclude>loadtesting_using_jmeter/**</exclude>
+									<exclude>performancetesting_using_visualvm/**</exclude>
+									<exclude>jobconfig_using_jenkins/**</exclude>
                 </excludes>
             </configuration>
         </plugin>		

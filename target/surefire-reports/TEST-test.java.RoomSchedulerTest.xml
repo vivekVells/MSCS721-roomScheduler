@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="13" failures="0" name="test.java.RoomSchedulerTest" time="0.136" errors="0" skipped="0">
+<testsuite tests="13" failures="0" name="test.java.RoomSchedulerTest" time="0.144" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_144\jre\bin"/>
@@ -46,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_144\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install package site"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install package test site"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -65,7 +65,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="test.java.RoomSchedulerTest" name="testIsStartDateBeforeCurrentDate" time="0.116"/>
+  <testcase classname="test.java.RoomSchedulerTest" name="testIsStartDateBeforeCurrentDate" time="0.124"/>
   <testcase classname="test.java.RoomSchedulerTest" name="testMeetingStartDateAndTimeEndTimeSubject" time="0"/>
   <testcase classname="test.java.RoomSchedulerTest" name="testAddRoom" time="0"/>
   <testcase classname="test.java.RoomSchedulerTest" name="testIsMinutesRounded15Increments" time="0"/>

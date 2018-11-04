@@ -6,28 +6,26 @@ Simple console menu driven room scheduler framework.
 ### Project Working Demo (all demo files location: [link](https://github.com/vivekVells/MSCS721-roomScheduler/tree/master/src/resources/workingDemo))
 - [Video Link](https://youtu.be/SZC_XPcPJgY)
 - [Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
+- [Code Modification & Testing Log](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/log/Modification%20Log.pdf)
 
 ### Objective
-- To allow users to create rooms and schedule meeting for it
+- Perform & experience the STLC process using Room Scheduler project that allows users to create rooms and schedule meeting for it
 ### Tech Involved 
-- Java, GSON
+- Java, Jenkins, Docker, GSON, Static Code Analysis, jUnit, Selenium
+- Testing: Performance using visualVM, Load using jMeter, Combinatorial using PICT, Mutation
 ### Features
 - Add a room with max accommodation capacity
 - Remove and view the created room info
 - Schedule room and view the scheduled room info
 - Export room info so that it can be later imported (since this pgm does not use db to store values. GSON is used here to store info)
 - Import room info from recently exported room information (GSON is used here.)
-### Concepts I Newly Learnt & Practiced
-- GSON
-- Static code analysis
-- Junit
-- Use Files (here JSON using GSON) instead of Relational DBs
 ### Future Code
 - Enhancement tweaks
 - Moving to better GUI
 
 ### Tasks | (Program is solid. but waiting for other fellow testers to test and break my code if it has any loop holes)
 **Completed objectives:**
+* Code modification & testing log file - [Link](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/log/Modification%20Log.pdf)
 * Add the ability to import and export the meeting, room, and schedule data to JSON a file
 or files, so that one can save and restore data entered from each program execution.
 * Harden and enhance the program to handle errors so that the program will not crash or
@@ -41,6 +39,8 @@ fail, no matter what the user does. “Make the program idiot proof.”
 * Report any issues of the peers
 * Review peer code
 * Junit tests
+* CI using Jenkins
+* Docker usage
 
 **Pending objectives:**
 * bucket_will_be_loaded

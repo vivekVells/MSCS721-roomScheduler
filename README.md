@@ -8,6 +8,11 @@ Simple console menu driven room scheduler framework.
 - [Working Demo - PDF sheet](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/workingDemo/files/Room%20Scheduler%20-%20by%20Vivek%20Vellaiyappan.pdf)
 - [Code Modification & Testing Log](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/log/Modification%20Log.pdf)
 
+### Coursework Information
+- Coursework Capstone Project: MSCS 721L | Duration: Spring 2018
+- Degree: Masters in Computer Science - Software Development | College: Marist College, NY
+- Professor: Michael Gildein
+
 ### Objective
 - Perform & experience the STLC process using Room Scheduler project that allows users to create rooms and schedule meeting for it
 ### Tech Involved 

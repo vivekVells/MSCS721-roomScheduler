@@ -9,7 +9,7 @@ Simple console menu driven room scheduler framework.
 - [Code Modification & Testing Log](https://github.com/vivekVells/MSCS721-roomScheduler/blob/master/src/resources/log/Modification%20Log.pdf)
 
 ### Coursework Information
-- Coursework Capstone Project: MSCS 721L | Duration: Spring 2018
+- Software Verification & Maintenance: MSCS 721L | Duration: Spring 2018 (Jan - May 2018)
 - Degree: Masters in Computer Science - Software Development | College: Marist College, NY
 - Professor: Michael Gildein
 
